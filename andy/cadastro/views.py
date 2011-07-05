@@ -23,7 +23,6 @@ def register(request):
         form = RegistrationForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_user = form.save()
-            new_profile = Member.objects.create(user=new_user)
             user = authenticate(username=new_user.username, password=form.cleaned_data['password1'])
             login(request, user)
             return HttpResponseRedirect(reverse(profile))

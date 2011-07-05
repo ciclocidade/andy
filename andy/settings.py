@@ -117,12 +117,6 @@ DATETIME_INPUT_FORMATS = ("%m/%d/%Y %I:%M %p" , '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %
     '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M', '%m/%d/%Y',
     '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M', '%m/%d/%y')
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 2525
-EMAIL_HOST_USER = 'bgola'
-EMAIL_HOST_PASSWORD = 'x'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 try:
     from local_settings import *
 except ImportError:
