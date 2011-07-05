@@ -48,9 +48,6 @@
     {% if form.birth.errors %}<span class="form_error">{% for error in form.birth.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.birth}}<br/>
 </div>
-<script type="text/javascript">
-  $("#id_birth").datepicker();
-</script>
 
 <div class="container">
     <label for="id_sexo" >{{form.sexo.label}}:</label><br/>
@@ -114,6 +111,13 @@
     <label for="submit" ></label><br/>
     <input type="submit" value="Enviar" />
 </div>
+<script type="text/javascript">
+	$("#id_birth").datepicker();
+	$("#id_cep").mask("99999-999");
+	$("#id_cpf").mask("999.999.999-99");
+	$("#id_phone_number").mask("99-9999-9999");
+</script>
+
 </fieldset>
 </form>
 {% endblock %}
