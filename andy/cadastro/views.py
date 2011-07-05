@@ -27,7 +27,7 @@ def register(request):
             login(request, user)
             return HttpResponseRedirect(reverse(profile))
     else: 
-        form = RegistrationFormTermsOfService()
+        form = RegistrationForm()
     return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
 
 def activate(request, activation_key):
