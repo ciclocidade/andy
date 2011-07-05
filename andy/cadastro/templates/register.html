@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Form Code Start -->
+<div id="register_form" class="form">
+<div class="explanation">
+	<p>A Ciclocidade - Associação de Ciclistas Urbanos de São Paulo é uma organização sem fins lucrativos, que defende os direitos dos ciclistas e promove o uso de bicicletas.</p>	
+	<p>Ao associar-se você ajuda diretamente na construção de uma cidade com melhores condições de vida e mobilidade.</p>
+	<p>Participe, envolva-se, associe-se. Ajude a construir as mudanças em que você acredita e sonha. O processo de associação consiste no preenchimento deste formulário e no <a href="{#% url anuidade %#}">pagamento da anuidade</a></p>
+</div>
+
+<form id="register" action="" method="post" accept-charset="UTF-8">
+{% csrf_token %}
+<fieldset >
+<legend>Associar-se</legend>
+{% if form.non_field_errors %}<span class="form_error">{% for error in form.non_field_errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+<div style="float: left; width: 242px;">
+<div class="container">
+    <label for="id_username" >{{form.username.label}}: </label><br/>
+    {% if form.username.errors %}<span class="form_error">{% for error in form.username.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.username}}<br/>
+</div>
+<div class="container">
+    <label for="id_email" >{{form.email.label}}:</label><br/>
+    {% if form.email.errors %}<span class="form_error">{% for error in form.email.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.email}}<br/>
+</div>
+</div>
+<div style="float: right">
+<div class="container">
+    <label for="id_password1" >{{form.password1.label}}:</label><br/>
+    {% if form.password1.errors %}<span class="form_error">{% for error in form.password1.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.password1}}<br/>
+</div>
+<div class="container">
+    <label for="id_password2" >{{form.password2.label}}:</label><br/>
+    {% if form.password2.errors %}<span class="form_error">{% for error in form.password2.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.password2}}<br/>
+</div>
+</div>
+<div class="container" style="clear: both;">
+	<p class="short_explanation">Os dados e informações pessoais fornecidos são de uso exclusivo da Associação e não serão compartilhados ou divulgados a terceiros. A Ciclocidade se reserva ao direito de utilizar tais dados e informações para a comunicação com seus associados e/ou de maneira estatística e agregada, sem que haja a identificação individual do(a) associado(a).</p>
+	<p class="short_explanation">Confirmo a veracidade das informações acima e solicito à Diretoria meu pedido de associação à Ciclocidade - Associação dos Ciclistas Urbanos de São Paulo, comprometendo-me a respeitar as disposições estatuárias, das quais tenho pleno conhecimento.</p>
+	<div style="float:left">
+		<span class="form_error">{% if form.tos.errors %}Você deve aceitar os termos para se registrar<br/>{% endif %}</span>
+    {{form.tos}} <label for="id_tos" >{{form.tos.label}}</label>
+    </div>
+<div style="float: right;">
+    <input type="submit" value="próximo »" />
+</div>
+
+</div>
+</fieldset>
+</form>
+{% endblock %}

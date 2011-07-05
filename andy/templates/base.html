@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Contact us</title>
+    <head>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cadastro.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+    <title>{% block title %}Andy - Sistema de cadastro de associdados da Ciclocidade{% endblock %}</title>
+    </head>
+
+<body>
+
+</head>
+<body>
+<div id="main">
+    <div id="header">
+	    	<div id="header_logo">
+			<a href="{% url cadastro_register %}"><img src="{{ STATIC_URL }}imgs/logo.png" /></a>
+		</div>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+	    {% for message in messages %}
+	    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+	    {% endfor %}
+    </ul>
+    {% endif %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer">
+    </div>
+</div>
+</body>
+</html>

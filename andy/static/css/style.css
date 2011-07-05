@@ -1,0 +1,78 @@
+body {
+	margin: 0px;
+	background-color: #640B0F;
+   	font-family : Arial, sans-serif;
+}
+
+div#main {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+	border-radius: 10px; 
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding: 20px;
+
+}
+
+div#header {
+	position: relative;
+	width:455px;
+	height:78px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#footer {
+	height: 20px;
+}
+
+div.line-breaker {
+	clear: both;
+	width: 100%;
+	border-top: dotted 1px #ccc;
+}
+
+ul.messages {
+	width: 550px;
+	margin-left: auto;
+	margin-right: auto;
+	list-style-type: none;
+	padding: 0px;
+	font-size: 0.7em;
+}
+ul.messages li {
+	padding: 5px 0px 5px 40px;
+	width: 95%;
+	border-width: 1px;
+       	border-style: solid;
+	-moz-border-radius: 3px;
+        -webkit-border-radius: 4px;
+	-khtml-border-radius: 4px;
+	border-radius: 4px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	margin-bottom: 5px;
+}
+
+.warning {
+	border-color: #FFC140;
+	background-color: #FFE1A4;
+	background-image: url('../imgs/warning.png');
+}
+
+.success {
+	border-color: #99C600;
+	background-color: #ECFFAA;
+	background-image: url('../imgs/success.png');
+}
+
+.error {
+	border-color: #EB5339;
+	background-color: #F8CBC2;
+	background-image: url('../imgs/error.png');
+}

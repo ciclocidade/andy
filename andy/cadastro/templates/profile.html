@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- Form Code Start -->
+<div id="profile_form" class="form">
+<form id="profile" action="" method="post" accept-charset="UTF-8">
+{% csrf_token %}
+<fieldset id="main_fieldset">
+<legend>Editar perfil</legend>
+<h3>Sua conta</h3>
+<span class="short_explanation">Se quiser alterar a sua senha preencha os campos abaixo</span><br/>
+
+{% if form.non_field_errors %}<span class="form_error">{% for error in form.non_field_errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+<div style="float: left; width: 242px;">
+<div class="container">
+<label for="username">nome de usuário: </label><br/>
+<p style="margin-top: 4px; margin-botom: 4px;">{{user.username}}</p>
+</div>
+<div class="container">
+    <label for="email" >endereço de email:</label><br/>
+<p style="margin-top: 4px; margin-botom: 4px;">{{user.email}}</p>
+</div>
+</div>
+<div style="float: right">
+<div class="container">
+    <label for="id_password1" >{{form.password1.label}}:</label><br/>
+    {% if form.password1.errors %}<span class="form_error">{% for error in form.password1.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.password1}}<br/>
+</div>
+<div class="container">
+    <label for="id_password2" >{{form.password2.label}}:</label><br/>
+    {% if form.password2.errors %}<span class="form_error">{% for error in form.password2.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.password2}}<br/>
+</div>
+</div>
+
+<div class="line-breaker">
+</div>
+
+<h3>Seus dados</h3>
+<div style="float: left; width: 242px;">
+<div class="container">
+    <label for="name" >{{form.name.label}}:</label><br/>
+    {% if form.name.errors %}<span class="form_error">{% for error in form.name.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.name}}<br/>
+</div>
+<div class="container">
+    <label for="birth" >{{form.birth.label}}:</label><br/>
+    {% if form.birth.errors %}<span class="form_error">{% for error in form.birth.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.birth}}<br/>
+</div>
+<div class="container">
+    <label for="id_sexo" >{{form.sexo.label}}:</label><br/>
+    {% if form.sexo.errors %}<span class="form_error">{% for error in form.sexo.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.sexo}}<br/>
+</div>
+<div class="container">
+    <label for="cpf" >{{form.cpf.label}}:</label><br/>
+    {% if form.cpf.errors %}<span class="form_error">{% for error in form.cpf.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.cpf}}<br/>
+</div>
+<div class="container">
+    <label for="id_rg" >{{form.rg.label}}:</label><br/>
+    {% if form.rg.errors %}<span class="form_error">{% for error in form.rg.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.rg}}<br/>
+</div>
+<div class="container">
+    <label for="phone_number" >{{form.phone_number.label}}:</label><br/>
+    {% if form.phone_number.errors %}<span class="form_error">{% for error in form.phone_number.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.phone_number}}<br/>
+</div>
+<div class="container">
+    <label for="id_education" >{{form.education.label}}:</label><br/>
+    {% if form.education.errors %}<span class="form_error">{% for error in form.education.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.education}}<br/>
+</div>
+<div class="container">
+    <label for="id_profession" >{{form.profession.label}}:</label><br/>
+    {% if form.profession.errors %}<span class="form_error">{% for error in form.profession.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.profession}}<br/>
+</div>
+</div>
+<div style="float: right">
+<div class="container">
+    <label for="address_street" >{{form.address_street.label}}:</label><br/>
+    {% if form.address_street.errors %}<span class="form_error">{% for error in form.address_street.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.address_street}}<br/>
+</div>
+<div class="container">
+    <label for="address_state" >{{form.address_state.label}}:</label><br/>
+    {% if form.address_state.errors %}<span class="form_error">{% for error in form.address_state.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.address_state}}<br/>
+</div>
+<div class="container">
+    <label for="address_city" >{{form.address_city.label}}:</label><br/>
+    {% if form.address_city.errors %}<span class="form_error">{% for error in form.address_city.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.address_city}}<br/>
+</div>
+<div class="container">
+    <label for="address_zip" >{{form.address_zip.label}}:</label><br/>
+    {% if form.address_zip.errors %}<span class="form_error">{% for error in form.address_zip.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.address_zip}}<br/>
+</div>
+<div class="container">
+    <label for="address_etc" >{{form.address_etc.label}}:</label><br/>
+    {% if form.address_etc.errors %}<span class="form_error">{% for error in form.address_etc.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.address_etc}}<br/>
+</div>
+</div>
+<div style="float: right;">
+    <label for="submit" ></label><br/>
+    <input type="submit" value="Enviar" />
+</div>
+</fieldset>
+</form>
+{% endblock %}

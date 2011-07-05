@@ -1,0 +1,14 @@
+Ola!
+
+Você está recebendo este e-mail porque alguém (possivelmente você) o utilizou para se associar à Ciclocidade - Associação de Ciclistas Urbanos de São Paulo. 
+
+Se não foi você que solicitou a associação, basta ignorar esta mensagem. 
+
+Para confirmar seu endereço de email siga o link abaixo, se isso não funcionar tente copiar e colar o link no seu navegador.
+
+http://{{ HOST }}/contas/ativar/{{ activation_key }}
+
+Por favor não responda essa mensagem, em caso de dúvidas ou problemas envie um email para contato@ciclocidade.org.br
+
+Obrigado! 
+Ciclocidade - Associação de Ciclistas Urbanos de São Paulo
