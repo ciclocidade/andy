@@ -110,13 +110,11 @@ LOGGING = {
 }
 
 AUTH_PROFILE_MODULE = 'cadastro.Member'
+LOGIN_REDIRECT_URL = '/perfil/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
-DATETIME_INPUT_FORMATS = ("%m/%d/%Y %I:%M %p" , '%Y-%m-%d %H:%M:%S', '%Y-%m-%d %H:%M', '%Y-%m-%d',
-    '%m/%d/%Y %H:%M:%S', '%m/%d/%Y %H:%M', '%m/%d/%Y',
-    '%m/%d/%y %H:%M:%S', '%m/%d/%y %H:%M', '%m/%d/%y')
-
+DATE_INPUT_FORMATS = ("%d/%m/%Y",)
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'ciclocidadeteste@gmail.com'

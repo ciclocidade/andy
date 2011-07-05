@@ -6,6 +6,10 @@
     <head>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cadastro.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/blitzer/jquery-ui-1.8.14.custom.css" />
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.ui.datepicker-pt-BR.js"></script>
     <title>{% block title %}Andy - Sistema de cadastro de associdados da Ciclocidade{% endblock %}</title>
     </head>
 
@@ -16,7 +20,7 @@
 <div id="main">
     <div id="header">
 	    	<div id="header_logo">
-			<a href="{% url cadastro_register %}"><img src="{{ STATIC_URL }}imgs/logo.png" /></a>
+			<a href="{% url index %}"><img src="{{ STATIC_URL }}imgs/logo.png" /></a>
 		</div>
     </div>
     {% if messages %}

@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!-- Form Code Start -->
 <div id="profile_form" class="form">
 <form id="profile" action="" method="post" accept-charset="UTF-8">
 {% csrf_token %}
@@ -49,6 +48,10 @@
     {% if form.birth.errors %}<span class="form_error">{% for error in form.birth.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.birth}}<br/>
 </div>
+<script type="text/javascript">
+  $("#id_birth").datepicker();
+</script>
+
 <div class="container">
     <label for="id_sexo" >{{form.sexo.label}}:</label><br/>
     {% if form.sexo.errors %}<span class="form_error">{% for error in form.sexo.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}

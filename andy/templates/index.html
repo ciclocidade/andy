@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load url from future %}
+
+{% block content %}
+<div style="height: 60px;"></div>
+<div id="register-button" style="width:49%; margin: 0px; float:left; border-right: 1px dotted #333; height: 150px;">
+	<form action="{% url 'cadastro_register' %}" method="GET" style="width: 220px; margin: auto;">
+		<input type=submit value="Associar-se" style="height: 100px; font-size: 1.8em; width: 200px;">
+	</form>
+</div>
+<div id="login-form" class="form" style="width:49%; margin: 0px; float:right;">
+	{% if form.errors %}
+	<p class="form_error">Usuário e/ou senha errados</p>
+	{% endif %}
+	<form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+	{% csrf_token %}
+	<table>
+	<tr>
+	    <td>{{ form.username.label_tag }}</td>
+	    <td>{{ form.username }}</td>
+	</tr>
+	<tr>
+	    <td>{{ form.password.label_tag }}</td>
+	    <td>{{ form.password }}</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><input type="submit" value="enviar" style="float: right;"/></td>
+	</tr>
+	</table>
+
+	<input type="hidden" name="next" value="{{ next }}" />
+	</form>
+
+</div>
+<div style="clear: both;">
+</div>
+{% endblock %}
