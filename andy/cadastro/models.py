@@ -24,8 +24,8 @@ class Member(models.Model):
     address_etc = models.CharField(u"Complemento", max_length=50, blank=True, default='')
     education = models.CharField(u'Escolaridade', max_length=2, choices=EDUCATIONS)
     profession = models.CharField(u'Profissão/Ocupação', max_length=100)
-    rg = models.IntegerField(u'RG')
-    cpf = models.IntegerField(u'CPF')
+    rg = models.CharField(u'RG', max_length=15)
+    cpf = models.CharField(u'CPF', max_length=15)
     receive_news = models.BooleanField(u'Deseja receber informativo?', default=True)
     #phone_number_2
     #organizations = 
