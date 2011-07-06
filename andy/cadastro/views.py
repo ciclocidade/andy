@@ -20,14 +20,16 @@ class RegistrationForm(RegistrationFormTermsOfService, RegistrationFormUniqueEma
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(data=request.POST, files=request.FILES)
+        #form = RegistrationForm(data=request.POST, files=request.FILES)
+        form = RegistrationFormTermsOfService(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_user = form.save()
             user = authenticate(username=new_user.username, password=form.cleaned_data['password1'])
             login(request, user)
             return HttpResponseRedirect(reverse(profile))
     else: 
-        form = RegistrationForm()
+        #form = RegistrationForm()
+        form = RegistrationFormTermsOfService()
     return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
 
 def activate(request, activation_key):
