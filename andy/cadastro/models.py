@@ -26,8 +26,8 @@ class Member(models.Model):
     profession = models.CharField(u'Profissão/Ocupação', max_length=100)
     rg = models.CharField(u'RG', max_length=15)
     cpf = models.CharField(u'CPF', max_length=15)
-    organizations = models.TextField(u"Organizações", default="", blank=True)
-    receive_news = models.BooleanField(u'Recebe informativo', default=True)
+    organizations = models.TextField(u"Organizações", default="", blank=True, null=True)
+    receive_news = models.BooleanField(u'Recebe informativo', default=True, blank=True)
 
     class Meta:
         verbose_name = "Associado"
