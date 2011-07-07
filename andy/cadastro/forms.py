@@ -9,11 +9,11 @@ from models import Member
 
 class MemberForm(forms.ModelForm):
     # account info
-    name = forms.CharField(label=u"Nome")
     password1 = forms.CharField(label=u"senha", widget=forms.PasswordInput(), required=False)
     password2 = forms.CharField(label=u"senha (novamente)", widget=forms.PasswordInput(), required=False)
     
     # profile info
+    name = forms.CharField(label=u"Nome completo")
     phone_number = BRPhoneNumberField(label="Telefone")
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
