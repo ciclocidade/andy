@@ -67,10 +67,7 @@ def profile(request):
             member = form.save()
             messages.add_message(request, messages.SUCCESS, 'Seu perfil foi atualizado com sucesso!')
             if member.is_complete() and request.user.is_active:
-                n = request.session.get('next', None)
-                if n:
-                    return HttpResponseRedirect(n)
-                return render_to_response('activate.html', context_instance=RequestContext(request))
+                return HttpResponseRedirect(request.session.get('next', reverse('cadastro_survey')))
     else:
         form = MemberForm(instance=member)
     if not member.is_complete():
@@ -91,6 +88,7 @@ def _has_profile(user):
 @login_required
 @user_passes_test(_has_profile, login_url='/perfil/')
 def survey(request):
+    request.session['next'] = request.GET.get('next', None)
     member = request.user.get_profile()
     if not member.is_complete():
         messages.add_message(request, messages.WARNING, 'Preencha seu perfil para ativar seu cadastro')
@@ -108,7 +106,21 @@ def survey(request):
                 bus.member = member
                 bus.save()
                 messages.add_message(request, messages.SUCCESS, 'Pesquisa preenchida com sucesso, obrigado!')
-                return HttpResponseRedirect(reverse("index"))
+                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_activate")))
             else:
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
+
+def _has_survey(user):
+    try:
+        BikeUsageSurvey.objects.get(member=user.get_profile())
+    except BikeUsageSurvey.DoesNotExist:
+        return False
+    return True
+
+@login_required
+@user_passes_test(_has_profile, login_url='/perfil/')
+@user_passes_test(_has_survey, login_url='/pesquisa/')
+def activate(request):
+    return render_to_response('activate.html', {'member': request.user.get_profile()}, context_instance=RequestContext(request))
+
