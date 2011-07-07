@@ -15,6 +15,8 @@ from registration.models import RegistrationProfile
 from models import Member
 from forms import MemberForm
 
+RegistrationFormTermsOfService.base_fields['tos'].label = u"Eu li e concordo com os Termos de Uso do serviço e com as condições de associação"
+
 class RegistrationForm(RegistrationFormTermsOfService, RegistrationFormUniqueEmail):
     pass
 
