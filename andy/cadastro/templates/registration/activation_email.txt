@@ -8,7 +8,7 @@ Para confirmar seu endereço de email siga o link abaixo, se isso não funcionar
 
 http://qf086.o1.gondor.io/perfil/ativar/{{ activation_key }}/
 
-Por favor não responda essa mensagem, em caso de dúvidas ou problemas envie um email para contato@ciclocidade.org.br
+Por favor não responda essa mensagem, em caso de dúvidas ou problemas envie um email para admin@ciclocidade.org.br
 
 Obrigado! 
 Ciclocidade - Associação de Ciclistas Urbanos de São Paulo
