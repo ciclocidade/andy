@@ -5,7 +5,7 @@ from django.contrib.localflavor.br.br_states import STATE_CHOICES
 
 SP_BRStateSelect = (('SP', u"São Paulo"),) + STATE_CHOICES
 
-from models import Member
+from models import Member, BikeUsageSurvey
 
 class MemberForm(forms.ModelForm):
     # account info
@@ -44,3 +44,16 @@ class MemberForm(forms.ModelForm):
         exclude = ( 'user',
                     'created_at',)
         widgets = {'address_state': forms.fields.Select(choices=SP_BRStateSelect) }
+
+from multiselectmodelfield import MultiSelectFormField
+class BikeUsageForm(forms.ModelForm):
+    bike_usage = MultiSelectFormField(label=u"Faz o uso da bicicleta, preferencialente, para (escolha até 3 itens):", choices=BikeUsageSurvey.USAGE_CHOICES, max_choices=3)
+    frequency = forms.ChoiceField(label=u"Com que frequência você usa a bicicleta?", widget=forms.RadioSelect, choices=BikeUsageSurvey.FREQUENCY_CHOICES)
+    source = forms.ChoiceField(label=u"Como soube da associação?", widget=forms.RadioSelect, choices=BikeUsageSurvey.SOURCE_CHOICES)
+    expectations = MultiSelectFormField(label=u"Quais as principais expectativas em relação à Ciclocidade? (escolha até 3 opções)", max_choices=3,
+                            choices=BikeUsageSurvey.EXPECTATIONS_CHOICES)
+    volunteering = MultiSelectFormField(label=u"Gostaria de trabalhar voluntariamente na Ciclocidade?", choices=BikeUsageSurvey.VOLUNTEERING_CHOICES)
+    class Meta:
+        model = BikeUsageSurvey
+        exclude = ('member',
+                   'created_at')

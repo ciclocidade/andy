@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="survey_form" class="form">
+<form id="survey" action="" method="post" accept-charset="UTF-8">
+{% csrf_token %}
+<fieldset id="main_fieldset">
+	<legend>Hábitos e Interesses</legend>
+	<p class="short_explanation">As perguntas a seguir dizem respeito aos seus hábitos e interesses. É necessário responder todos os ítens. Suas respostas nos ajudarão a planejar e direcionar as ações da Ciclocidade. </p>
+	<ul>
+		{{ form.as_ul }}
+	</li>
+<div style="float: right;">
+    <label for="submit" ></label><br/>
+    <input type="submit" value="próximo »" />
+</div>
+</fieldset>
+</form>
+{% endblock %}

@@ -26,12 +26,14 @@ class Member(models.Model):
     profession = models.CharField(u'Profissão/Ocupação', max_length=100)
     rg = models.CharField(u'RG', max_length=15)
     cpf = models.CharField(u'CPF', max_length=15)
-    organizations = models.TextField(u"Organizações", default="")
+    organizations = models.TextField(u"Organizações", default="", blank=True)
     receive_news = models.BooleanField(u'Recebe informativo', default=True)
 
     class Meta:
         verbose_name = "Associado"
 
+    def city_uf_str(self):
+        return "%s/%s" % (self.address_city, self.address_state)
     def is_complete(self):
         required_fields = ( 'user',
                             'created_at',
@@ -58,3 +60,63 @@ class Member(models.Model):
         return self.user.email
 
 
+from multiselectmodelfield import MultiSelectField
+class BikeUsageSurvey(models.Model):
+    FREQUENCY_CHOICES = [ (i,i) for i in (u"5 a 7 vezes por semana",
+                         u"2 a 4 vezes por semana",
+                         u"uma vez por semana",
+                         u"eventualmente",
+                         u"ainda não utilizo a bicicleta",
+                         u"não utilizo a bicicleta") ]
+    SOURCE_CHOICES = [ (i,i) for i in (u"sites, blogs ou mecanismos de busca na internet",
+                      u"facebook, twitter ou listas de e-mail",
+                      u"indicação de amigos / conhecidos",
+                      u"eventos / atividades",
+                      u"panfleto",
+                      u"participei do ato de fundação",
+                      u"instituição ou grupo",
+                      u"outros") ]
+    USAGE_CHOICES = [ (i,i) for i in (
+                     u"ir ao trabalho às vezes",
+                     u"ir ao trabalho todos os dias",
+                     u"fazer outros deslocamentos no meu dia-a-dia",
+                     u"como instrumento de trabalho (ex: entregas, vigilância, etc)",
+                     u"lazer",
+                     u"esporte (amador ou profissional)",
+                     u"ainda não utilizo a bicicleta",
+                     u"não utilizo a bicicleta") ]
+    EXPECTATIONS_CHOICES = [ (i,i) for i in (
+                    u"conhecer direitos e leis a serem defendidos junto a órgãos públicos e ouras instituições",
+                    u"contribuir para a construção de políticas públicas relativas à mobilidade urbana",
+                    u"espaços de discussão sobre o uso da bicicleta na cidade (dicas, problemas, experiências, trajetos e outros)",
+                    u"atividades culturais e educativas que promovam o uso da bicicleta (encontros, passeios, seminários, oficinas)",
+                    u"aprofundamento teórico, estudo e produção de conhecimento",
+                    u"conhecer dicas e técnicas sobre compra, uso e manutenção de bicicletas") ]
+    VOLUNTEERING_CHOICES = [ (i,i) for i in (
+                    u"sim, participando de projetos específicos e pontuais nas minhas áreas de interesse ou atuação",
+                    u"sim, participando da Coordenadoria de Cultura da Bicicleta e Formação do Ciclista",
+                    u"sim, participando da Coordenadoria de Participação Pública",
+                    u"sim, participando da Coordenadoria de Consultoria e Pesquisa",
+                    u"sim, participando da Coordenadoria de Comunicação",
+                    u"sim, participando da Coordenadoria de Tecnologia",
+                    u"sim, participando da Coordenadoria de Relações com Associados e Voluntários",
+                    u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
+                    u"sim, representando a associação no meu bairro, grupo ou entidade",
+                    u"não, não tenho disponibilidade") ]
+    member = models.OneToOneField(Member, verbose_name="Associado")
+    created_at = models.DateTimeField(u"Data", auto_now_add=True)
+    bike_usage = MultiSelectField(u"Uso da bicicleta", choices=USAGE_CHOICES, max_length=150)
+    frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=150)
+    source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=150)
+    expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES, max_length=150)
+    volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES, max_length=150)
+    
+    class Meta:
+        verbose_name = u"Pesquisa hábitos e interesses"
+        verbose_name_plural = u"Pesquisas hábitos e interesses"
+
+    def __unicode__(self):
+        return self.member.name
+
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^cadastro\.multiselectmodelfield\.MultiSelectField"])

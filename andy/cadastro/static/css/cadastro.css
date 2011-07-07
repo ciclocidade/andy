@@ -96,7 +96,7 @@ div.form .container
    margin-bottom: 10px;
 }
 
-div.form .form_error, div.form .erro ul.errorlist li
+div.form .form_error, div.form .erro ul.errorlist li, div.form ul.errorlist li
 {
    font-family: Verdana, Arial, sans-serif; 
    font-size: 0.7em;
@@ -173,4 +173,32 @@ div.form_content h2
    font-size: 1.5em;
    font-weight:bold;
    color:#333;
+}
+
+div#survey_form ul  {
+	list-style: none;
+	padding-left: 0px;
+}
+
+
+div#survey_form ul li {
+	padding-left: 10px;
+	border-bottom: dotted 1px #ccc;
+	padding-bottom: 15px;
+	padding-top: 15px;
+}
+div#survey_form ul li label {
+	display: block;
+	margin-bottom: 5px;
+}
+div#survey_form ul li ul li label {
+	font-weight: normal;
+	font-size: 0.7em;
+	margin-bottom: 0px;
+	padding-top: 0px;
+}	
+div#survey_form ul li ul li {
+	border-bottom: none;
+	padding-bottom: 0px;
+	padding-top: 0px;
 }

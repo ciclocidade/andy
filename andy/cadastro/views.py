@@ -1,7 +1,7 @@
 # coding: utf-8
 
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.core.urlresolvers import reverse
@@ -12,8 +12,8 @@ from django.contrib import messages
 from registration.forms import RegistrationFormTermsOfService, RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
 
-from models import Member
-from forms import MemberForm
+from models import Member, BikeUsageSurvey
+from forms import MemberForm, BikeUsageForm
 
 RegistrationFormTermsOfService.base_fields['tos'].label = u"Eu li e concordo com os Termos de Uso do serviço e com as condições de associação"
 
@@ -54,6 +54,7 @@ def activate(request, activation_key):
 @login_required
 def profile(request):
     msg = ''
+    request.session['next'] = request.GET.get('next', None)
     try:
         member = request.user.get_profile()
     except ObjectDoesNotExist:
@@ -66,6 +67,9 @@ def profile(request):
             member = form.save()
             messages.add_message(request, messages.SUCCESS, 'Seu perfil foi atualizado com sucesso!')
             if member.is_complete() and request.user.is_active:
+                n = request.session.get('next', None)
+                if n:
+                    return HttpResponseRedirect(n)
                 return render_to_response('activate.html', context_instance=RequestContext(request))
     else:
         form = MemberForm(instance=member)
@@ -76,3 +80,35 @@ def profile(request):
     if not form.fields['address_city'].initial:
         form.fields['address_city'].initial = u'São Paulo' 
     return render_to_response('profile.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
+
+def _has_profile(user):
+    try:
+        user.get_profile()
+    except ObjectDoesNotExist:
+        return False
+    return True
+
+@login_required
+@user_passes_test(_has_profile, login_url='/perfil/')
+def survey(request):
+    member = request.user.get_profile()
+    if not member.is_complete():
+        messages.add_message(request, messages.WARNING, 'Preencha seu perfil para ativar seu cadastro')
+    if not request.user.is_active:
+        messages.add_message(request, messages.WARNING, 'Verifique sua caixa de entrada e confirme seu endereço de e-mail')
+    
+    form = BikeUsageForm()
+    if request.method == 'POST':
+        form = BikeUsageForm(request.POST)
+        if form.is_valid():
+            try:
+                BikeUsageSurvey.objects.get(member=member)
+            except BikeUsageSurvey.DoesNotExist:
+                bus = form.save(commit=False)
+                bus.member = member
+                bus.save()
+                messages.add_message(request, messages.SUCCESS, 'Pesquisa preenchida com sucesso, obrigado!')
+                return HttpResponseRedirect(reverse("index"))
+            else:
+                messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
+    return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
