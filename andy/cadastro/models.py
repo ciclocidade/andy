@@ -105,11 +105,11 @@ class BikeUsageSurvey(models.Model):
                     u"não, não tenho disponibilidade") ]
     member = models.OneToOneField(Member, verbose_name="Associado")
     created_at = models.DateTimeField(u"Data", auto_now_add=True)
-    bike_usage = MultiSelectField(u"Uso da bicicleta", choices=USAGE_CHOICES, max_length=150)
-    frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=150)
-    source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=150)
-    expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES, max_length=150)
-    volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES, max_length=150)
+    bike_usage = MultiSelectField(u"Uso da bicicleta", choices=USAGE_CHOICES, max_length=255)
+    frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
+    source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
+    expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES, max_length=255)
+    volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES, max_length=255)
     
     class Meta:
         verbose_name = u"Pesquisa hábitos e interesses"
