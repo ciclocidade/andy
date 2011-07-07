@@ -93,7 +93,7 @@
 </div>
 <div class="container">
     <label for="address_zip" >{{form.address_zip.label}}:</label><br/>
-    {% if form.address_zip.errors %}<span class="form_error">{% for error in form.address_zip.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {% if form.address_zip.errors %}<span class="form_error">Informe um código postal no formato XXXXX-XXX.<br/>{% endfor %}</span>{% endif %}
     {{form.address_zip}}<br/>
 </div>
 <div class="container">
