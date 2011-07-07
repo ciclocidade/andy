@@ -26,11 +26,8 @@ class Member(models.Model):
     profession = models.CharField(u'Profissão/Ocupação', max_length=100)
     rg = models.CharField(u'RG', max_length=15)
     cpf = models.CharField(u'CPF', max_length=15)
-    receive_news = models.BooleanField(u'Deseja receber informativo?', default=True)
-    #phone_number_2
-    #organizations = 
-    #bicycle_usage
-    #bicycle_frequency
+    organizations = models.TextField(u"Organizações", default="")
+    receive_news = models.BooleanField(u'Recebe informativo', default=True)
 
     class Meta:
         verbose_name = "Associado"
@@ -49,7 +46,9 @@ class Member(models.Model):
                             'cpf')
         return all(getattr(self, field) for field in required_fields)
 
-        
+    def __unicode__(self):
+        return self.name
+
     @property
     def name(self):
         return self.user.get_full_name()
@@ -57,3 +56,5 @@ class Member(models.Model):
     @property
     def email(self):
         return self.user.email
+
+

@@ -106,10 +106,15 @@
     {% if form.profession.errors %}<span class="form_error">{% for error in form.profession.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.profession}}<br/>
 </div>
-<div class="container">
+</div>
+<div class="container" style="clear: both; width: 475px;">
+	<label for="id_receive_news" >{{form.organizations.label}}</label> <br />
+	{% if form.organizations.errors %}<span class="form_error">{% for error in form.organizations.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+	{{form.organizations}} <br />
+</div>
+<div class="container" style="clear: both;">
     {% if form.receive_news.errors %}<span class="form_error">{% for error in form.receive_news.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.receive_news}} <label for="id_receive_news" >{{form.receive_news.label}}</label> <br />
-</div>
 </div>
 <div style="float: right;">
     <label for="submit" ></label><br/>
