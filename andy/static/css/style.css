@@ -76,3 +76,17 @@ ul.messages li {
 	background-color: #F8CBC2;
 	background-image: url('../imgs/error.png');
 }
+
+/* ANUIDADE */
+
+div#anuidade {
+	width: 500px;
+}
+div#anuidade ul {
+	font-size: 0.9em;
+	list-style: square;
+}
+
+div#anuidade ul li {
+	margin: 10px;
+}
