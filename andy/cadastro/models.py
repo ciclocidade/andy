@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 EDUCATIONS = (
+        ('FI', u'Fundamental Incompleto'),
         ('FC', u'Fundamental Completo'),
         ('MI', u'Médio Incompleto'),
         ('MC', u'Médio Completo'),
@@ -66,8 +67,7 @@ class BikeUsageSurvey(models.Model):
                          u"2 a 4 vezes por semana",
                          u"uma vez por semana",
                          u"eventualmente",
-                         u"ainda não utilizo a bicicleta",
-                         u"não utilizo a bicicleta") ]
+                         u"ainda não utilizo a bicicleta") ]
     SOURCE_CHOICES = [ (i,i) for i in (u"sites, blogs ou mecanismos de busca na internet",
                       u"facebook, twitter ou listas de e-mail",
                       u"indicação de amigos / conhecidos",
@@ -86,7 +86,7 @@ class BikeUsageSurvey(models.Model):
                      u"ainda não utilizo a bicicleta",
                      u"não utilizo a bicicleta") ]
     EXPECTATIONS_CHOICES = [ (i,i) for i in (
-                    u"conhecer direitos e leis a serem defendidos junto a órgãos públicos e ouras instituições",
+                    u"conhecer direitos e leis a serem defendidos junto a órgãos públicos e outras instituições",
                     u"contribuir para a construção de políticas públicas relativas à mobilidade urbana",
                     u"espaços de discussão sobre o uso da bicicleta na cidade (dicas, problemas, experiências, trajetos e outros)",
                     u"atividades culturais e educativas que promovam o uso da bicicleta (encontros, passeios, seminários, oficinas)",

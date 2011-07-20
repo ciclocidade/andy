@@ -34,19 +34,20 @@ def register(request):
         form = RegistrationFormTermsOfService()
     return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
 
-def activate(request, activation_key):
-    activation_key = activation_key.lower() 
-    user = RegistrationProfile.objects.activate_user(activation_key)
-    if user:
-        messages.add_message(request, messages.SUCCESS, 'Seu email foi verificado com sucesso!')
-        try:
-            user_profile = user.get_profile()
-            if not user_profile.is_complete():
-                raise ObjectDoesNotExist
-        except ObjectDoesNotExist:
-            return HttpResponseRedirect(reverse(profile))
-        else:
-            return render_to_response('activate.html', context_instance=RequestContext(request))
+def activate(request, activation_key=None):
+    if activation_key:
+        activation_key = activation_key.lower() 
+        user = RegistrationProfile.objects.activate_user(activation_key)
+        if user:
+            messages.add_message(request, messages.SUCCESS, 'Seu email foi verificado com sucesso!')
+            try:
+                user_profile = user.get_profile()
+                if not user_profile.is_complete():
+                    raise ObjectDoesNotExist
+            except ObjectDoesNotExist:
+                return HttpResponseRedirect(reverse(profile))
+            else:
+                return render_to_response('activate.html', context_instance=RequestContext(request))
     messages.add_message(request, messages.ERROR, 'Não foi possivel ativar o cadastro')
     return render_to_response('activate_error.html', context_instance=RequestContext(request))
 
