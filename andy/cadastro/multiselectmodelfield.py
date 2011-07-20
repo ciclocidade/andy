@@ -24,7 +24,7 @@ class MultiSelectField(models.Field):
     __metaclass__ = models.SubfieldBase
 
     def get_internal_type(self):
-        return "CharField"
+        return "TextField"
 
     def get_choices_default(self):
         return self.get_choices(include_blank=False)
