@@ -17,7 +17,7 @@ class MemberForm(forms.ModelForm):
     phone_number = BRPhoneNumberField(label="Telefone")
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
-    receive_news = forms.BooleanField(label="desejo recebero o boletim informativo?", required=False)
+    receive_news = forms.BooleanField(label="desejo recebero o boletim informativo", required=False)
     organizations = forms.CharField(label=u"Você participa de outras organizações? Se sim, preencha no campo abaixo: (uma por linha)", 
                                     widget=forms.Textarea(attrs={'style': 'width: 470px'}), required=False)
     
