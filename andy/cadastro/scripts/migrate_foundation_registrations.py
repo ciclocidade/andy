@@ -36,15 +36,25 @@ def birth(registration):
     return "%s-%s-%s" % (y,m,d)
 
 def phone_number(registration):
-    return registration['celular'] if not registration['celular'].isspace() else registration['telefone']
+    t = registration['celular'] if not registration['celular'].isspace() else registration['telefone']
+    t = "".join(t.split())
+    return t[:15]
 
 def sexo(registration):
     if sexo:
-        return registration['sexo']
+        return registration['sexo'][0]
     return None
 
+def rg(registration):
+    rg = registration['identidade']
+    rg = ''.join(rg.split())
+    return rg[:15]
+
+def cpf(registration):
+    return registration['cpf'][:15]
+
 foundation_fields = ('profissao', 'cep', 'dt_nascimento', 'celular', 'sexo', 'estado', 'cpf', 'identidade', 'endereco', 'autorizacao')
-membership_fields = ('profession', 'address_zip', birth, phone_number, sexo, 'address_state', 'cpf', 'rg', 'address_street', 'receive_news')
+membership_fields = ('profession', 'address_zip', birth, phone_number, sexo, 'address_state', cpf, rg, 'address_street', 'receive_news')
 # from django core
 email_re = re.compile(r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
                       r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-011\013\014\016-\177])*"' # quoted-string
