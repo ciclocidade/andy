@@ -7,6 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'django.contrib.auth.views.login', {'template_name': 'index.html'}, name="index"),
+    url(r'^$', 'views.login', name="index"),
     url(r'^', include('cadastro.urls')),
 )
