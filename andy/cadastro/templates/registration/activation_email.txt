@@ -6,7 +6,7 @@ Se não foi você que solicitou a associação, basta ignorar esta mensagem.
 
 Para confirmar seu endereço de email siga o link abaixo, se isso não funcionar tente copiar e colar o link no seu navegador.
 
-http://qf086.o1.gondor.io/perfil/ativar/{{ activation_key }}/
+http://associados.ciclocidade.org.br/perfil/ativar/{{ activation_key }}/
 
 Por favor não responda essa mensagem, em caso de dúvidas ou problemas envie um email para admin@ciclocidade.org.br
 
