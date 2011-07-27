@@ -8,5 +8,5 @@ from cadastro.views import profile
 
 def login(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect(reverse(profile))
+        return HttpResponseRedirect(reverse('cadastro_profile'))
     return auth_login(request, template_name="index.html")

@@ -28,7 +28,7 @@ def register(request):
             new_user = form.save()
             user = authenticate(username=new_user.username, password=form.cleaned_data['password1'])
             login(request, user)
-            return HttpResponseRedirect(reverse(profile))
+            return HttpResponseRedirect(reverse('cadastro_profile'))
     else: 
         #form = RegistrationForm()
         form = RegistrationFormTermsOfService()

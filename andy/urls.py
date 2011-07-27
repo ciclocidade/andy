@@ -7,6 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'views.login', name="index"),
+    url(r'^$', 'andy.views.login', name="index"),
     url(r'^', include('cadastro.urls')),
 )
