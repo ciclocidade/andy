@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Contact us</title>
+    <title>Ciclocidade: Cadastro de Associados</title>
     <head>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/cadastro.css" />
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
@@ -24,6 +24,13 @@
     <div id="header">
 	    	<div id="header_logo">
 			<a href="{% url index %}"><img src="{{ STATIC_URL }}imgs/logo.png" /></a>
+			<ul id="menu">
+			   <li><a href="{% url cadastro_profile %}" title="Editar seu perfil de associado">Editar perfil</a></li>
+			   <li><a href="{% url cadastro_survey %}" title="Preencher pesquisa de hábitos e interesses">Preencher pesquisa</a></li>
+			   <li class="menu_destaque">
+				<a href="#" title="Sua associacão estará completa após a confirmação do pagamento da anuidade!">Pagar anuidade</a>
+			   </li>
+			</ul>
 		</div>
     </div>
     {% if messages %}
@@ -37,6 +44,7 @@
         {% block content %}{% endblock %}
     </div>
     <div id="footer">
+	Dúvidas e sugestões? Escreva para: &#116;&#101;&#099;&#110;&#111;&#108;&#111;&#103;&#105;&#097;&#064;&#099;&#105;&#099;&#108;&#111;&#099;&#105;&#100;&#097;&#100;&#101;&#046;&#111;&#114;&#103;&#046;&#098;&#114;
     </div>
 </div>
 </body>

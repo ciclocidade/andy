@@ -6,13 +6,45 @@
 {% csrf_token %}
 <fieldset id="main_fieldset">
 	<legend>Hábitos e Interesses</legend>
-	<p class="short_explanation">As perguntas a seguir dizem respeito aos seus hábitos e interesses. É necessário responder todos os ítens. Suas respostas nos ajudarão a planejar e direcionar as ações da Ciclocidade. </p>
+	<p class="short_explanation">As perguntas a seguir dizem respeito aos seus hábitos e interesses. É necessário responder todos os itens. Suas respostas nos ajudarão a planejar e direcionar as ações da Ciclocidade. </p>
 	<ul>
 		{{ form.as_ul }}
-	</li>
+	<li><a id="coordenadorias_lightbox" href="#coordenadorias">Ementa de funcionamento e metas das Coordenadorias</a></li>
+	</ul>
+
+<div style="display:none">
+<div id="coordenadorias">
+<ul>
+<li><span class="missao">Missão da Coordenadoria de Cultura da Bicicleta e Formação do Ciclista:</span><br />
+	Desenvolvimento e realização de atividades, ações e eventos que propaguem a cultura da bicicleta e auxiliem na formação do ciclista urbano.</li>
+<li><span class="missao">Missão da Coordenadoria de Participação Pública:</span><br />
+	Relações com organizações da sociedade civil e com o poder público. Participação em fóruns, espaços e grupos relacionados à mobilidade urbana. </li>
+<li><span class="missao">Missão da Coordenadoria de Associados e Voluntários: </span><br />
+	Gestão dos vínculos entre associados e a Ciclocidade. Coordenação e desenvolvimento de espaços de participação dos voluntários.</li>
+<li><span class="missao">Missão da Coordenadoria de Comunicação: </span><br />
+	Divulgação institucional, produção de conteúdo, alimentação dos canais de comunicação e atendimento ao público.</li>
+<li><span class="missao">Missão da Coordenadoria de Tecnologia: </span><br />
+	Manutenção e desenvolvimento da infraestrutura tecnológica. Suporte e treinamento para a utilização das ferramentas digitais.</li>
+<li><span class="missao">Missão da Coordenadoria de Consultoria e Pesquisa:</span><br />
+	Levantamento, produção e difusão de informações e dados úteis para a melhoria das condições de mobilidade urbana em São Paulo.</li>
+<li><span class="missao">Missão da Coordenadoria de Desenvolvimento Institucional:</span><br />
+	Gestão dos processos administrativos, financeiros e jurídicos da associação.</li>
+</ul>
+</div>
+</div>
+<script type="text/javascript">
+$("a#coordenadorias_lightbox").fancybox({
+		'hideOnContentClick': true,
+		'showCloseButton': true,
+		'title': "Coordenadorias",
+		'titleShow': true,
+		'showCloseButton': true
+});
+</script>
+
 <div style="float: right;">
     <label for="submit" ></label><br/>
-    <input type="submit" value="próximo »" />
+    <input type="submit" value="Salvar" />
 </div>
 </fieldset>
 </form>

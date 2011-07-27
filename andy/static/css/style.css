@@ -19,6 +19,11 @@ div#main {
 
 }
 
+div#content {
+	margin-top:50px;
+	clear:both;
+}
+
 div#header {
 	position: relative;
 	width:455px;
@@ -29,6 +34,8 @@ div#header {
 
 div#footer {
 	height: 20px;
+	font-size: 0.7em;
+	text-align: center;
 }
 
 div.line-breaker {
@@ -41,6 +48,7 @@ ul.messages {
 	width: 550px;
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 45px;
 	list-style-type: none;
 	padding: 0px;
 	font-size: 0.7em;
@@ -89,4 +97,66 @@ div#anuidade ul {
 
 div#anuidade ul li {
 	margin: 10px;
+}
+
+/* MENU by Igor on 2011-07-26 */
+
+#menu {
+	background: #333;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+#menu li {
+	float: left;
+	font-size: 0.7em; 
+	margin: 0;
+	padding: 0;
+}
+#menu a {
+	background: #333;
+	color: #ccc;
+	display: block;
+	float: left;
+	margin: 0;
+	padding: 8px 12px;
+	text-decoration: none;
+	font-weight:normal;
+}
+#menu a:hover {
+	background: #ccc;
+	color: #640B0F;
+	padding-bottom: 8px;
+	border-width: 0 0 3px 0;
+	border-style: solid;
+	border-color: #640B0F;
+	}
+#menu li.menu_destaque a {
+	background: #cc0000;
+}
+#menu li.menu_destaque a:hover {
+	background: #ccc; 
+}
+
+/* COORDENADORIAS */
+
+div#coordenadorias {
+	width: 600px;
+}
+div#coordenadorias ul {
+	font-size: 0.9em;
+	list-style: square;
+}
+
+div#coordenadorias ul li {
+	margin: 10px;
+}
+div#coordenadorias .missao {
+	font-weight: bold;
+}
+
+#coordenadorias_lightbox {
+	font-size: 0.8em;
 }
