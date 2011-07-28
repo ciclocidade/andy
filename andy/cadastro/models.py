@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.safestring import mark_safe
 
 EDUCATIONS = (
         ('FI', u'Fundamental Incompleto'),
@@ -103,8 +104,8 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
                     u"sim, representando a associação no meu bairro, grupo ou entidade",
                     u"não, não tenho disponibilidade") ]
-    CITY_REGION = [ (i,i) for i in (
-		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
+    CITY_REGION = [ (i,mark_safe(i)) for i in (
+		    u"ARICANDUVA <i>(Aricanduva, Carrão, Vila Formosa)</i>",
 		    u"BUTANTÃ (Butantã, Morumbi, Vila Sônia, Raposo Tavares, Rio Pequeno)",
 		    u"CAMPO LIMPO, Campo Limpo, Capão Redondo, Vila Andrade)",
 		    u"CAPELA DO SOCORRO (Socorro, Grajaú, Cidade Dutra)",
