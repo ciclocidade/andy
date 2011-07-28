@@ -68,7 +68,7 @@ class BikeUsageSurvey(models.Model):
                          u"2 a 4 vezes por semana",
                          u"uma vez por semana",
                          u"eventualmente",
-                         u"ainda não utilizo a bicicleta") ]
+                         u"não utilizo a bicicleta") ]
     SOURCE_CHOICES = [ (i,i) for i in (u"sites, blogs ou mecanismos de busca na internet",
                       u"facebook, twitter ou listas de e-mail",
                       u"indicação de amigos / conhecidos",
@@ -84,7 +84,6 @@ class BikeUsageSurvey(models.Model):
                      u"como instrumento de trabalho (ex: entregas, vigilância, etc)",
                      u"lazer",
                      u"esporte (amador ou profissional)",
-                     u"ainda não utilizo a bicicleta",
                      u"não utilizo a bicicleta") ]
     EXPECTATIONS_CHOICES = [ (i,i) for i in (
                     u"conhecer direitos e leis a serem defendidos junto a órgãos públicos e outras instituições",
@@ -97,7 +96,7 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando de projetos específicos e pontuais nas minhas áreas de interesse ou atuação",
                     u"sim, participando da Coordenadoria de Cultura da Bicicleta e Formação do Ciclista",
                     u"sim, participando da Coordenadoria de Participação Pública",
-                    u"sim, participando da Coordenadoria de Consultoria e Pesquisa",
+                    u"sim, participando da Coordenadoria de Pesquisa",
                     u"sim, participando da Coordenadoria de Comunicação",
                     u"sim, participando da Coordenadoria de Tecnologia",
                     u"sim, participando da Coordenadoria de Relações com Associados e Voluntários",
