@@ -103,12 +103,46 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
                     u"sim, representando a associação no meu bairro, grupo ou entidade",
                     u"não, não tenho disponibilidade") ]
+    CITY_REGION = [ (i,i) for i in (
+		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
+		    u"BUTANTÃ (Butantã, Morumbi, Vila Sônia, Raposo Tavares, Rio Pequeno)",
+		    u"CAMPO LIMPO, Campo Limpo, Capão Redondo, Vila Andrade)",
+		    u"CAPELA DO SOCORRO (Socorro, Grajaú, Cidade Dutra)",
+		    u"CASA VERDE (Casa Verde, Cachoeirinha, Limão)",
+		    u"CIDADE ADEMAR (Cidade Ademar, Pedreira)",
+		    u"CIDADE TIRADENTES (Cidade Tiradentes)",
+		    u"ERMELINO MATARAZZO (Ermelino Matarazzo, Ponte Rasa)",
+		    u"FREGUESIA DO Ó (Freguesia do Ó, Brasilândia)",
+		    u"GUAIANASES (Guaianases, Lajeado)",
+		    u"IPIRANGA (Ipiranga, Cursino, Sacomã)",
+		    u"ITAIM PAULISTA (Itaim Paulista, Vila Curuçá)",
+		    u"ITAQUERA (Itaquera, Parque do Carmo, José Bonifácio, Cidade Líder)",
+		    u"JABAQUARA (Jabaquara)",
+		    u"JAÇANÃ (Tremembé, Jaçanã)",
+		    u"LAPA (Lapa, Barra Funda, Perdizes, Vila Leopoldina, Jaguaré, Jaraguá)",
+		    u"M'BOI MIRIM (Jardim Ângela, Jardim São Luís)",
+		    u"MÓOCA (Mooca, Brás, Belém, Pari, Água Rasa, Tatuapé)",
+		    u"PARELHEIROS (Parelheiros, Marsilac)",
+		    u"PENHA (Penha, Cangaíba, Vila Matilde, Artur Alvim)",
+		    u"PERUS (Anhangüera, Perus)",
+		    u"PINHEIROS (Alto de Pinheiros, Pinheiros, Itaim Bibi, Jardim Paulista)",
+		    u"PIRITUBA (Pirituba, São Domingos, Jaraguá)",
+		    u"SANTANA (Santana, Tucuruvi, Mandaqui)",
+		    u"SANTO AMARO (Santo Amaro, Campo Belo, Campo Grande)",
+		    u"SÃO MATEUS (São Mateus, São Rafael, Iguatemi)",
+		    u"SÃO MIGUEL (São Miguel Paulista, Jardim Helena, Vila Jacuí)",
+		    u"SÉ (Bom Retiro, Santa Cecília, Consolação, República, Sé, Bela Vista, Liberdade, Cambuci)",
+		    u"VILA MARIA (Vila Maria, Vila Guilherme, Vila Medeiros)",
+		    u"VILA MARIANA (Vila Mariana, Saúde, Moema)",
+		    u"VILA PRUDENTE (Vila Prudente, Sapopemba, São Lucas)" ) ]
+
     member = models.OneToOneField(Member, verbose_name="Associado")
     created_at = models.DateTimeField(u"Data", auto_now_add=True)
     bike_usage = MultiSelectField(u"Uso da bicicleta", choices=USAGE_CHOICES)
     frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
     source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
     expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES)
+    city_region = MultiSelectField(u"Por onde você pedala", choices=CITY_REGION)
     volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES)
     
     class Meta:
