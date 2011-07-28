@@ -15,19 +15,26 @@ div#main {
 	border-radius: 10px; 
 	margin-top: 10px;
 	margin-bottom: 10px;
-	padding: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
 
 }
 
 div#content {
-	margin-top:50px;
+	padding-left: 20px;
+	padding-right: 20px;
 	clear:both;
 }
 
 div#header {
 	position: relative;
+	width:700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div#header-logo {
 	width:455px;
-	height:78px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -36,6 +43,7 @@ div#footer {
 	height: 20px;
 	font-size: 0.7em;
 	text-align: center;
+	margin-top: 15px;
 }
 
 div.line-breaker {
@@ -45,10 +53,10 @@ div.line-breaker {
 }
 
 ul.messages {
-	width: 550px;
+	width: 500px;
 	margin-left: auto;
 	margin-right: auto;
-	margin-top: 45px;
+	clear: both;
 	list-style-type: none;
 	padding: 0px;
 	font-size: 0.7em;
@@ -101,44 +109,49 @@ div#anuidade ul li {
 
 /* MENU by Igor on 2011-07-26 */
 
-#menu {
-	background: #333;
+div#menu {
 	float: left;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+div#menu ul {
 	list-style: none;
 	margin: 0;
-	padding: 0;
-	width: 100%;
-}
-#menu li {
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
 	float: left;
-	font-size: 0.7em; 
-	margin: 0;
-	padding: 0;
 }
-#menu a {
-	background: #333;
-	color: #ccc;
-	display: block;
+
+div#menu ul li {
+	display: inline;
 	float: left;
-	margin: 0;
-	padding: 8px 12px;
-	text-decoration: none;
+}
+
+div#menu ul li#logout {
+	float: right;
+}
+
+div#menu ul li a {
+	padding: 6px 25px;
+    	/* visual do link */
+    	color: #555;
+	font: 17px ArialNueva, arial, verdana, tahoma, helvetica, sans-serif;
+    	text-decoration: none;
 	font-weight:normal;
+	float: left;
+	border: 1px solid #fff;
 }
-#menu a:hover {
-	background: #ccc;
-	color: #640B0F;
-	padding-bottom: 8px;
-	border-width: 0 0 3px 0;
-	border-style: solid;
-	border-color: #640B0F;
-	}
-#menu li.menu_destaque a {
-	background: #cc0000;
+
+div#menu ul li a:hover {
+	color: #963E3F;
+	border: 1px solid #640B0F;
 }
-#menu li.menu_destaque a:hover {
-	background: #ccc; 
-}
+
 
 /* COORDENADORIAS */
 
