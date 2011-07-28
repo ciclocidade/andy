@@ -31,8 +31,8 @@
       <ul>
        <li><a href="{% url cadastro_profile %}" title="Editar seu perfil de associado">Perfil</a></li>
        <li><a href="{% url cadastro_survey %}" title="Preencher pesquisa de hábitos e interesses">Pesquisa</a></li>
-       <li><a href="#" title="Sua associacão estará completa após a confirmação do pagamento da anuidade!">Anuidades</a></li>
-       <li id="logout"><a href="#">Sair</a></li>
+       <li><a href="#">Anuidades</a></li>
+       <li id="logout"><a href="{% url logout %}">Sair</a></li>
       </ul>
     </div>
     {% endif %}

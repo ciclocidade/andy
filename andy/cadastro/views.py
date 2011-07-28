@@ -22,16 +22,14 @@ class RegistrationForm(RegistrationFormTermsOfService, RegistrationFormUniqueEma
 
 def register(request):
     if request.method == 'POST':
-        #form = RegistrationForm(data=request.POST, files=request.FILES)
-        form = RegistrationFormTermsOfService(data=request.POST, files=request.FILES)
+        form = RegistrationForm(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_user = form.save()
             user = authenticate(username=new_user.username, password=form.cleaned_data['password1'])
             login(request, user)
             return HttpResponseRedirect(reverse('cadastro_profile'))
     else: 
-        #form = RegistrationForm()
-        form = RegistrationFormTermsOfService()
+        form = RegistrationForm()
     return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
 
 def activate(request, activation_key=None):
@@ -40,14 +38,7 @@ def activate(request, activation_key=None):
         user = RegistrationProfile.objects.activate_user(activation_key)
         if user:
             messages.add_message(request, messages.SUCCESS, 'Seu email foi verificado com sucesso!')
-            try:
-                user_profile = user.get_profile()
-                if not user_profile.is_complete():
-                    raise ObjectDoesNotExist
-            except ObjectDoesNotExist:
-                return HttpResponseRedirect(reverse(profile))
-            else:
-                return render_to_response('activate.html', context_instance=RequestContext(request))
+            return HttpResponseRedirect(reverse(profile))
     messages.add_message(request, messages.ERROR, 'Não foi possivel ativar o cadastro')
     return render_to_response('activate_error.html', context_instance=RequestContext(request))
 
@@ -74,7 +65,7 @@ def profile(request):
     else:
         form = MemberForm(instance=member)
     if not member.is_complete():
-        messages.add_message(request, messages.WARNING, 'Preencha seu perfil para ativar seu cadastro')
+        messages.add_message(request, messages.WARNING, 'Complete os dados do seu perfil!')
     if not form.fields['name'].initial:
         form.fields['name'].initial = request.user.get_full_name()
     if not form.fields['address_city'].initial:
@@ -111,7 +102,7 @@ def survey(request):
                 bus.member = member
                 bus.save()
                 messages.add_message(request, messages.SUCCESS, 'Pesquisa preenchida com sucesso, obrigado!')
-                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_final")))
+                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_profile")))
             else:
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
@@ -123,9 +114,4 @@ def _has_survey(user):
         return False
     return True
 
-@login_required
-@user_passes_test(lambda u: u.is_active, login_url='/perfil/')
-@user_passes_test(_has_profile, login_url='/perfil/')
-@user_passes_test(_has_survey, login_url='/pesquisa/')
-def final(request):
-    return render_to_response('activate.html', {'member': request.user.get_profile()}, context_instance=RequestContext(request))
+

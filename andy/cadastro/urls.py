@@ -9,5 +9,4 @@ urlpatterns = patterns('cadastro.views',
         url(r'perfil/ativar/(?P<activation_key>\w+)/$', 'activate', name='cadastro_activate'),
         url(r'perfil/', 'profile', name='cadastro_profile'),
         url(r'pesquisa/', 'survey', name='cadastro_survey'),
-        url(r'ativo/', 'final', name='cadastro_final'),
 )
