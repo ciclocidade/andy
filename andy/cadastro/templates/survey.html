@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
+{% if form %}
 <div id="survey_form" class="form">
 <form id="survey" action="" method="post" accept-charset="UTF-8">
 {% csrf_token %}
@@ -48,4 +49,7 @@ $("a#coordenadorias_lightbox").fancybox({
 </div>
 </fieldset>
 </form>
+{% else %}
+<center><h2>Você ja respondeu todas as pesquisas.</h2></center>
+{% endif %}
 {% endblock %}

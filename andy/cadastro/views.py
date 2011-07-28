@@ -42,7 +42,6 @@ def activate(request, activation_key=None):
     messages.add_message(request, messages.ERROR, 'Não foi possivel ativar o cadastro')
     return render_to_response('activate_error.html', context_instance=RequestContext(request))
 
-
 @login_required
 def profile(request):
     msg = ''
@@ -53,8 +52,6 @@ def profile(request):
         member = request.user.get_profile()
     except ObjectDoesNotExist:
         member = Member(user=request.user)
-    if not request.user.is_active:
-        messages.add_message(request, messages.WARNING, 'Verifique sua caixa de entrada e confirme seu endereço de e-mail')
     if request.method == 'POST':
         form = MemberForm(request.POST, instance=member)
         if form.is_valid():
@@ -74,7 +71,7 @@ def profile(request):
 
 def _has_profile(user):
     try:
-        user.get_profile()
+        user.get_profile().is_complete()
     except ObjectDoesNotExist:
         return False
     return True
@@ -86,12 +83,9 @@ def survey(request):
     if nex:
         request.session['next'] = nex
     member = request.user.get_profile()
-    if not member.is_complete():
-        messages.add_message(request, messages.WARNING, 'Preencha seu perfil para ativar seu cadastro')
-    if not request.user.is_active:
-        messages.add_message(request, messages.WARNING, 'Verifique sua caixa de entrada e confirme seu endereço de e-mail')
-    
-    form = BikeUsageForm()
+    form = None
+    if not member.answered_survey():
+        form = BikeUsageForm()
     if request.method == 'POST':
         form = BikeUsageForm(request.POST)
         if form.is_valid():
@@ -106,12 +100,5 @@ def survey(request):
             else:
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
-
-def _has_survey(user):
-    try:
-        BikeUsageSurvey.objects.get(member=user.get_profile())
-    except BikeUsageSurvey.DoesNotExist:
-        return False
-    return True
 
 

@@ -33,9 +33,17 @@ class Member(models.Model):
 
     class Meta:
         verbose_name = "Associado"
+    
+    def answered_survey(self):
+        try:
+            BikeUsageSurvey.objects.get(member=self)
+        except BikeUsageSurvey.DoesNotExist:
+            return False
+        return True
 
     def city_uf_str(self):
         return "%s/%s" % (self.address_city, self.address_state)
+    
     def is_complete(self):
         required_fields = ( 'user',
                             'created_at',
@@ -182,8 +190,8 @@ class BikeUsageSurvey(models.Model):
     frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
     source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
     expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES)
-    city_region = MultiSelectField(u"Por onde você pedala (distritos/subprefeituras)", choices=CITY_REGION, default="")
-    city_metro  = MultiSelectField(u"Por onde você pedala (região metropolitana)", choices=CITY_METRO, default="")
+    city_region = MultiSelectField(u"Por onde você pedala (distritos/subprefeituras)", choices=CITY_REGION, default="", blank=True)
+    city_metro  = MultiSelectField(u"Por onde você pedala (região metropolitana)", choices=CITY_METRO, default="", blank=True)
     volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES)
     
     class Meta:
