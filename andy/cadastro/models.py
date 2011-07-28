@@ -135,6 +135,45 @@ class BikeUsageSurvey(models.Model):
 		    u"VILA MARIA (Vila Maria, Vila Guilherme, Vila Medeiros)",
 		    u"VILA MARIANA (Vila Mariana, Saúde, Moema)",
 		    u"VILA PRUDENTE (Vila Prudente, Sapopemba, São Lucas)" ) ]
+    CITY_METRO = [ (i,i) for i in (
+		u"ARUJÁ",
+		u"BARUERI",
+		u"BIRITIBA-MIRIM",
+		u"CAIEIRAS",
+		u"CAJAMAR",
+		u"CARAPICUÍBA",
+		u"COTIA",
+		u"DIADEMA",
+		u"EMBU",
+		u"EMBU GUAÇU",
+		u"FERRAZ DE VASCONCELOS",
+		u"FRANCISCO MORATO",
+		u"FRANCO DA ROCHA",
+		u"GUARAREMA",
+		u"GUARULHOS",
+		u"ITAPECERICA DA SERRA",
+		u"ITAPEVI",
+		u"ITAQUAQUECETUBA",
+		u"JANDIRA",
+		u"JUQUITIBA",
+		u"MAIRIPORÃ",
+		u"MAUÁ",
+		u"MOGI DAS CRUZES",
+		u"OSASCO",
+		u"PIRAPORA DO BOM JESUS",
+		u"POÁ",
+		u"RIBEIRÃO PIRES",
+		u"RIO GRANDE DA SERRA",
+		u"SALESÓPOLIS",
+		u"SANTA ISABEL",
+		u"SANTANA DE PARNAÍBA",
+		u"SANTO ANDRÉ",
+		u"SÃO BERNARDO DO CAMPO",
+		u"SÃO CAETANO DO SUL",
+		u"SÃO LOURENÇO DA SERRA",
+		u"SUZANO",
+		u"TABOÃO DA SERRA",
+		u"VARGEM GRANDE PAULISTA" ) ]
 
     member = models.OneToOneField(Member, verbose_name="Associado")
     created_at = models.DateTimeField(u"Data", auto_now_add=True)
@@ -142,7 +181,8 @@ class BikeUsageSurvey(models.Model):
     frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
     source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
     expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES)
-    city_region = MultiSelectField(u"Por onde você pedala", choices=CITY_REGION)
+    city_region = MultiSelectField(u"Por onde você pedala (distritos/subprefeituras)", choices=CITY_REGION)
+    city_metro  = MultiSelectField(u"Por onde você pedala (região metropolitana)", choices=CITY_METRO)
     volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES)
     
     class Meta:
