@@ -103,8 +103,8 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
                     u"sim, representando a associação no meu bairro, grupo ou entidade",
                     u"não, não tenho disponibilidade") ]
-    CITY_REGION = [ (i,mark_safe(i)) for i in (
-		    u"ARICANDUVA <i>(Aricanduva, Carrão, Vila Formosa)</i>",
+    CITY_REGION = [ (i.split("(")[0].strip(),i) for i in (
+		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
 		    u"BUTANTÃ (Butantã, Morumbi, Vila Sônia, Raposo Tavares, Rio Pequeno)",
 		    u"CAMPO LIMPO, Campo Limpo, Capão Redondo, Vila Andrade)",
 		    u"CAPELA DO SOCORRO (Socorro, Grajaú, Cidade Dutra)",
@@ -181,8 +181,8 @@ class BikeUsageSurvey(models.Model):
     frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
     source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
     expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES)
-    city_region = MultiSelectField(u"Por onde você pedala (distritos/subprefeituras)", choices=CITY_REGION)
-    city_metro  = MultiSelectField(u"Por onde você pedala (região metropolitana)", choices=CITY_METRO)
+    city_region = MultiSelectField(u"Por onde você pedala (distritos/subprefeituras)", choices=CITY_REGION, default="")
+    city_metro  = MultiSelectField(u"Por onde você pedala (região metropolitana)", choices=CITY_METRO, default="")
     volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES)
     
     class Meta:
