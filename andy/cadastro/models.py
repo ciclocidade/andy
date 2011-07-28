@@ -142,7 +142,7 @@ class BikeUsageSurvey(models.Model):
     frequency = models.CharField(u"Frequência que usa a bicicleta", choices=FREQUENCY_CHOICES, max_length=255)
     source = models.CharField(u"Como soube da associação", choices=SOURCE_CHOICES, max_length=255)
     expectations = MultiSelectField(u"Expectativa Ciclocidade", choices=EXPECTATIONS_CHOICES)
-    city_region = MultiSelectField(u"Por onde você pedala", choices=CITY_REGION)
+    city_region = MultiSelectField(u"Por onde você pedala", choices=CITY_REGION, default="")
     volunteering = MultiSelectField(u"Voluntário", choices=VOLUNTEERING_CHOICES)
     
     class Meta:
