@@ -101,4 +101,19 @@ def survey(request):
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
 
+@login_required
+@user_passes_test(_has_profile, login_url='/perfil/')
+def pay(request):
+    from django_pagseguro.pagseguro import ItemPagSeguro, CarrinhoPagSeguro
+    user = request.user
+    member = user.get_profile()
+
+    if request.method == 'POST':
+        carrinho = CarrinhoPagSeguro(ref_transacao=1)
+        carrinho.set_cliente(email=user.email, cep=member.address_zip)
+        carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=35.00))
+        payment_form = carrinho.form()
+        return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
+    return render_to_response("pay.html", context_instance=RequestContext(request))
+
 

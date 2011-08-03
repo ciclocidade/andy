@@ -1,4 +1,4 @@
-# Django settings for emulta project.
+# coding: utf-8
 import os.path
 
 DEBUG = True
@@ -122,6 +122,8 @@ EMAIL_HOST_PASSWORD = 'c1cl0c1d'
 EMAIL_PORT = 587
 
 DEFAULT_FROM_EMAIL = 'ciclocidadeteste@gmail.com'
+
+PAGSEGURO_ERRO_LOG  = '/tmp/pagseguro_erro.log' # arquivo para salvar os erros de validação de retorno com o pagseguro(opcional)
 
 try:
     from local_settings import *
