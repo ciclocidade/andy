@@ -111,7 +111,7 @@ def pay(request):
     if request.method == 'POST':
         carrinho = CarrinhoPagSeguro(ref_transacao=1)
         carrinho.set_cliente(email=user.email, cep=member.address_zip)
-        carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=35.00))
+        carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=60.00))
         payment_form = carrinho.form()
         return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
     return render_to_response("pay.html", context_instance=RequestContext(request))
