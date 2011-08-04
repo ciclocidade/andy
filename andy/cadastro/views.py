@@ -105,7 +105,7 @@ def pay(request):
     user = request.user
     member = user.get_profile()
     if request.method == 'POST':
-        p = Payment.objects.create(status="Aguardando")
+        p = Payment.objects.create(status="Aguardando", user=user)
         carrinho = CarrinhoPagSeguro(ref_transacao=p.pk)
         carrinho.set_cliente(email=user.email, cep=member.address_zip)
         carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=60.00))
