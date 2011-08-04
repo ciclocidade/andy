@@ -112,6 +112,7 @@ LOGGING = {
 
 AUTH_PROFILE_MODULE = 'cadastro.Member'
 LOGIN_REDIRECT_URL = '/perfil/'
+LOGIN_URL = '/'
 
 ACCOUNT_ACTIVATION_DAYS = 7
 
