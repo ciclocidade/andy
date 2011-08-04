@@ -84,6 +84,7 @@ INSTALLED_APPS = (
     'registration',
     # andy apps
     'cadastro',
+    'pagamento',
 )
 
 # A sample logging configuration. The only tangible logging
