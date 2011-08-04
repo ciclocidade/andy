@@ -12,8 +12,10 @@ from django.contrib import messages
 from registration.forms import RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
 
-from models import Member, BikeUsageSurvey
-from forms import MemberForm, BikeUsageForm
+from pagamento.models import Payment
+
+from cadastro.models import Member, BikeUsageSurvey
+from cadastro.forms import MemberForm, BikeUsageForm
 
 
 def register(request):
