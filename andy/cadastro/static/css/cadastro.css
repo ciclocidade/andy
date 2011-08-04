@@ -202,3 +202,14 @@ div#survey_form ul li ul li {
 	padding-bottom: 0px;
 	padding-top: 0px;
 }
+
+.sexo ul {
+	list-style: none;
+	padding: 0px;
+	margin: 5px;
+}
+.sexo li {
+	display: inline;
+}
+.sexo br {
+	display: none;

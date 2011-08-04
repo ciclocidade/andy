@@ -16,7 +16,7 @@ EDUCATIONS = (
 class Member(models.Model):
     user = models.OneToOneField(User)
     created_at = models.DateTimeField(u"Data de cadastro", auto_now_add=True)
-    sexo = models.CharField(u"Sexo", choices=(("F", "Feminino"), ("M", "Masculino")), max_length=2, default="F")
+    sexo = models.CharField(u"Sexo", choices=(("F", "Feminino"), ("M", "Masculino")), max_length=2)
     birth = models.DateField(u"Data de Nascimento", null=True)
     phone_number = models.CharField(u"Telefone", max_length=15)
     address_street = models.CharField(u"Endereço", max_length=150)

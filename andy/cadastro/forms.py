@@ -1,5 +1,7 @@
 # coding: utf-8
 from django import forms
+from django.forms.fields import ChoiceField
+from django.forms.widgets import RadioSelect
 from django.contrib.localflavor.br.forms import BRStateSelect, BRCPFField, BRZipCodeField, BRPhoneNumberField
 from django.contrib.localflavor.br.br_states import STATE_CHOICES
 
@@ -17,6 +19,7 @@ class MemberForm(forms.ModelForm):
     phone_number = BRPhoneNumberField(label="Telefone")
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
+    sexo = ChoiceField(widget=RadioSelect, choices=(('M', "Masculino"), ("F", "Feminino")))
     receive_news = forms.BooleanField(label="desejo recebero o boletim informativo", required=False)
     organizations = forms.CharField(label=u"Você participa de outras organizações? Se sim, preencha no campo abaixo: (uma por linha)", 
                                     widget=forms.Textarea(attrs={'style': 'width: 470px'}), required=False)
