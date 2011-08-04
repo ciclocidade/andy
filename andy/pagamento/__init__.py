@@ -1,0 +1,1 @@
+from pagamento.signals import *
