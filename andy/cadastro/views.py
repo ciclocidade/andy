@@ -102,9 +102,9 @@ def pay(request):
     from django_pagseguro.pagseguro import ItemPagSeguro, CarrinhoPagSeguro
     user = request.user
     member = user.get_profile()
-
     if request.method == 'POST':
-        carrinho = CarrinhoPagSeguro(ref_transacao=1)
+        p = Payment.objects.create(status="Aguardando")
+        carrinho = CarrinhoPagSeguro(ref_transacao=p.pk)
         carrinho.set_cliente(email=user.email, cep=member.address_zip)
         carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=60.00))
         payment_form = carrinho.form()
