@@ -40,7 +40,25 @@ $("a#coordenadorias_lightbox").fancybox({
 		'title': "Coordenadorias",
 		'titleShow': true,
 		'showCloseButton': true
-});
+		});
+
+var f = function (id) { 
+	var ul = $(id).parent().parent().parent();
+	$(id).click(function (){
+		if ($(this).attr('checked')) {
+			$('input:not(' + id + ')', ul).attr('checked', false);
+		}
+	});
+
+	$('input:not(' + id + ')', ul).click(function () {
+		if ($(this).attr('checked')) {
+			$(id).attr('checked', false);
+		};
+	});
+};
+
+f('#id_volunteering_9');
+f('#id_bike_usage_6');
 </script>
 
 <div style="float: right;">
