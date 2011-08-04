@@ -9,27 +9,22 @@ from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 
-from registration.forms import RegistrationFormTermsOfService, RegistrationFormUniqueEmail
+from registration.forms import RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
 
 from models import Member, BikeUsageSurvey
 from forms import MemberForm, BikeUsageForm
 
-RegistrationFormTermsOfService.base_fields['tos'].label = u"Eu li e concordo com os Termos de Uso do serviço e com as condições de associação"
-
-class RegistrationForm(RegistrationFormTermsOfService, RegistrationFormUniqueEmail):
-    pass
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationForm(data=request.POST, files=request.FILES)
+        form = RegistrationFormUniqueEmail(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_user = form.save()
-            user = authenticate(username=new_user.username, password=form.cleaned_data['password1'])
-            login(request, user)
-            return HttpResponseRedirect(reverse('cadastro_profile'))
+            messages.add_message(request, messages.SUCCESS, 'Registro feito com sucesso, por favor verifique seu email.')
+            return HttpResponseRedirect('/')
     else: 
-        form = RegistrationForm()
+        form = RegistrationFormUniqueEmail()
     return render_to_response('register.html', {'form': form}, context_instance=RequestContext(request))
 
 def activate(request, activation_key=None):
