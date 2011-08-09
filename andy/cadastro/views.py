@@ -23,7 +23,7 @@ def register(request):
         form = RegistrationFormUniqueEmail(data=request.POST, files=request.FILES)
         if form.is_valid():
             new_user = form.save()
-            messages.add_message(request, messages.SUCCESS, 'Registro feito com sucesso, por favor verifique seu email.')
+            messages.add_message(request, messages.SUCCESS, 'Registro feito com sucesso, por favor verifique seu email para continuar com o processo de associação.')
             return HttpResponseRedirect('/')
     else: 
         form = RegistrationFormUniqueEmail()
@@ -34,7 +34,7 @@ def activate(request, activation_key=None):
         activation_key = activation_key.lower() 
         user = RegistrationProfile.objects.activate_user(activation_key)
         if user:
-            messages.add_message(request, messages.SUCCESS, 'Seu email foi verificado com sucesso!')
+            messages.add_message(request, messages.SUCCESS, 'Seu email foi verificado com sucesso! Faça o login para continuar com o processo de associação.')
             return HttpResponseRedirect(reverse(profile))
     messages.add_message(request, messages.ERROR, 'Não foi possivel ativar o cadastro')
     return render_to_response('activate_error.html', context_instance=RequestContext(request))
@@ -93,7 +93,7 @@ def survey(request):
                 bus.member = member
                 bus.save()
                 messages.add_message(request, messages.SUCCESS, 'Pesquisa preenchida com sucesso, obrigado!')
-                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_profile")))
+                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_pay")))
             else:
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))

@@ -20,7 +20,7 @@ class MemberForm(forms.ModelForm):
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
     sexo = ChoiceField(widget=RadioSelect, choices=(('M', "Masculino"), ("F", "Feminino")))
-    receive_news = forms.BooleanField(label="desejo recebero o boletim informativo", required=False)
+    receive_news = forms.BooleanField(label="desejo receber o boletim informativo", required=False)
     organizations = forms.CharField(label=u"Você participa de outras organizações? Se sim, preencha no campo abaixo: (uma por linha)", 
                                     widget=forms.Textarea(attrs={'style': 'width: 470px'}), required=False)
     
@@ -49,6 +49,7 @@ class MemberForm(forms.ModelForm):
         widgets = {'address_state': forms.fields.Select(choices=SP_BRStateSelect) }
 
 from multiselectmodelfield import MultiSelectFormField
+from django.utils.safestring import mark_safe
 class BikeUsageForm(forms.ModelForm):
     bike_usage = MultiSelectFormField(label=u"Faz o uso da bicicleta, preferencialente, para (escolha até 3 itens):", choices=BikeUsageSurvey.USAGE_CHOICES, max_choices=3)
     frequency = forms.ChoiceField(label=u"Com que frequência você usa a bicicleta?", widget=forms.RadioSelect, choices=BikeUsageSurvey.FREQUENCY_CHOICES)
@@ -56,6 +57,7 @@ class BikeUsageForm(forms.ModelForm):
     expectations = MultiSelectFormField(label=u"Quais as principais expectativas em relação à Ciclocidade? (escolha até 3 opções)", max_choices=3,
                             choices=BikeUsageSurvey.EXPECTATIONS_CHOICES)
     volunteering = MultiSelectFormField(label=u"Gostaria de trabalhar voluntariamente na Ciclocidade?", choices=BikeUsageSurvey.VOLUNTEERING_CHOICES)
+    city_region = MultiSelectFormField(label=mark_safe("SUBPREFEITURAS / distritos por onde você pedala (<a class='short_explanation' href='http://upload.wikimedia.org/wikipedia/commons/4/44/Mapa_distritos_sp.jpg' target='_blank'>mapa</a>)"), choices=BikeUsageSurvey.CITY_REGION)
     class Meta:
         model = BikeUsageSurvey
         exclude = ('member',
