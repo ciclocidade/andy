@@ -8,7 +8,7 @@ class Payment(models.Model):
     status = models.CharField(u"Status", max_length=20, default="Aprovado", choices=(
                             ('Cancelado', 'Cancelado'),
                             ('Aguardando', 'Aguardando'),
-                            ('Aprovado', 'Aprovadao')))
+                            ('Aprovado', 'Aprovado')))
     last_modified = models.DateTimeField(auto_now=True)
     class Meta:
         verbose_name = u"Anuidade"
