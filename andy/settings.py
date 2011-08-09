@@ -125,7 +125,7 @@ EMAIL_PORT = 587
 
 DEFAULT_FROM_EMAIL = 'ciclocidadeteste@gmail.com'
 
-PAGSEGURO_ERRO_LOG  = '/tmp/pagseguro_erro.log' # arquivo para salvar os erros de validação de retorno com o pagseguro(opcional)
+ANUIDADE = 60.00
 
 try:
     from local_settings import *
