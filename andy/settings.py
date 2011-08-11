@@ -117,15 +117,8 @@ LOGIN_URL = '/'
 ACCOUNT_ACTIVATION_DAYS = 7
 
 DATE_INPUT_FORMATS = ("%d/%m/%Y",)
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ciclocidadeteste@gmail.com'
-EMAIL_HOST_PASSWORD = 'c1cl0c1d'
-EMAIL_PORT = 587
 
-DEFAULT_FROM_EMAIL = 'ciclocidadeteste@gmail.com'
-
-ANUIDADE = 60.00
+ANUIDADE = (60.00, 120.00, 180.00)
 
 try:
     from local_settings import *
