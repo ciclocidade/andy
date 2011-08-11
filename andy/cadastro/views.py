@@ -108,9 +108,17 @@ def pay(request):
         p = Payment.objects.create(status="Aguardando", user=user)
         carrinho = CarrinhoPagSeguro(ref_transacao=p.pk)
         carrinho.set_cliente(email=user.email, cep=member.address_zip)
-        carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=60.00))
+        valor = request.POST.get('valor')
+        if not valor.isdigit() or int(valor) < min(settings.ANUIDADE):
+            valor = min(settings.ANUIDADE)
+        carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=float(valor)))
         payment_form = carrinho.form()
         return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
-    return render_to_response("pay.html", context_instance=RequestContext(request))
+    paids = user.payment_set.filter(paid=True)
+    show_form = not bool(paids.count())
+    if not show_form:
+        messages.add_message(request, messages.SUCCESS, 'Você esta em dia com o pagamento da anuidade!')
+    return render_to_response("pay.html", {'paids': paids, 'show_form': show_form},
+            context_instance=RequestContext(request))
 
 

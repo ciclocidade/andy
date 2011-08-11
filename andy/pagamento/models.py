@@ -10,5 +10,9 @@ class Payment(models.Model):
                             ('Aguardando', 'Aguardando'),
                             ('Aprovado', 'Aprovado')))
     last_modified = models.DateTimeField(auto_now=True)
+    
     class Meta:
         verbose_name = u"Anuidade"
+
+    def __unicode__(self):
+        return self.last_modified.strftime("%d/%m/%Y")

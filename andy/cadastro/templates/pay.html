@@ -1,16 +1,34 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <ul>
 <li>A Ciclocidade acredita no apoio e na participação de seus associados para cumprir sua missão de defender o ciclista e promover o uso de bicicletas em São Paulo.</li>
-<li>Nossa entidade não tem fins lucrativos, mas temos um custo de funcionamento e estrutura para as atividades.</li>
+<li>Nossa entidade não tem fins lucrativos, mas a sua contribuição nos ajuda a manter o custo mínimo de funcionamento.</li>
 <li>Seguindo resoluções <a target="_blank" href="http://www.ciclocidade.org.br/quem-somos/estatuto">estatutárias</a> e deliberações da Diretoria, a partir de agosto de 2011 a Ciclocidade passará a contar com a anuidade paga por seus associados.</li>
 <li>A contribuição dos sócios é de R$ 60,00 por ano, podendo ser paga através de boleto bancário, cartões de crédito, débito em conta ou outras formas disponíveis no serviço PagSeguro..</li>
 <li>A cobrança da anuidade acontecerá sempre no mês de agosto de cada ano, em valor integral.</li>
+<li>Clique no ícone abaixo e complete a sua associação. Em até 48h você irá receber um email de boas vindas da Ciclcoidade com mais informações sobre as formas de participação.</li>
 </ul>
 
+{% if show_form %}
 <form action="." method="post" name="payment">
 	{% csrf_token %}
-	<input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/205x30-pagar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
+	<p style="margin-left: 18px;">
+	<input id="60" type="radio" name="valor" value=60 /><label for="60">R$ 60,00</label>
+	<input id="120" type="radio" name="valor" value=60 /><label for="120"> R$ 120,00</label>
+	<input id="180" type="radio" name="valor" value=60 /><label for="180">R$ 180,00</label>
+	</p>
+	<input style="margin-left: 20px;" type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/205x30-pagar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
 </form>
+{% endif %}
+{% if paids %}
+<h2>Anuidades pagas:</h2>
+
+<ul>
+{% for paid in paids %}
+<li>{{ paid }}</li>
+{% endfor %}
+</ul>
+{% endif %}
 {% endblock %}

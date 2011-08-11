@@ -41,6 +41,9 @@ class Member(models.Model):
             return False
         return True
 
+    def paid(self):
+        return bool(self.user.payment_set.filter(paid=True).count())
+
     def city_uf_str(self):
         return "%s/%s" % (self.address_city, self.address_state)
     
@@ -109,7 +112,6 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando da Coordenadoria de Tecnologia",
                     u"sim, participando da Coordenadoria de Relações com Associados e Voluntários",
                     u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
-                    u"sim, representando a associação no meu bairro, grupo ou entidade",
                     u"não, não tenho disponibilidade") ]
     CITY_REGION = [ (i.split("(")[0].strip(),i) for i in (
 		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
@@ -142,7 +144,8 @@ class BikeUsageSurvey(models.Model):
 		    u"SÉ (Bom Retiro, Santa Cecília, Consolação, República, Sé, Bela Vista, Liberdade, Cambuci)",
 		    u"VILA MARIA (Vila Maria, Vila Guilherme, Vila Medeiros)",
 		    u"VILA MARIANA (Vila Mariana, Saúde, Moema)",
-		    u"VILA PRUDENTE (Vila Prudente, Sapopemba, São Lucas)" ) ]
+		    u"VILA PRUDENTE (Vila Prudente, Sapopemba, São Lucas)",
+            u"Outros municípios da grande São Paulo") ]
 
     member = models.OneToOneField(Member, verbose_name="Associado")
     created_at = models.DateTimeField(u"Data", auto_now_add=True)
