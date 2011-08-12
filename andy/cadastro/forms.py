@@ -20,6 +20,7 @@ class MemberForm(forms.ModelForm):
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
     sexo = ChoiceField(widget=RadioSelect, choices=(('M', "Masculino"), ("F", "Feminino")))
+    id_type = ChoiceField(label=u"Tipo de documento", widget=RadioSelect, choices=(('RG', "RG"), ("RNE", "RNE")))
     receive_news = forms.BooleanField(label="desejo receber o boletim informativo", required=False)
     organizations = forms.CharField(label=u"Você participa de outras organizações? Se sim, preencha no campo abaixo: (uma por linha)", 
                                     widget=forms.Textarea(attrs={'style': 'width: 470px'}), required=False)

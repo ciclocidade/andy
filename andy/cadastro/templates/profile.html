@@ -64,18 +64,23 @@
     {% if form.rg.errors %}<span class="form_error">{% for error in form.rg.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.rg}}<br/>
 </div>
+<div class="container sexo">
+    <label for="id_id_type" >{{form.id_type.label}}:</label><br/>
+    {% if form.id_type.errors %}<span class="form_error">{% for error in form.id_type.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
+    {{form.id_type}}<br/>
+</div>
 <div class="container">
     <label for="phone_number" >{{form.phone_number.label}}:</label><br/>
     {% if form.phone_number.errors %}<span class="form_error">{% for error in form.phone_number.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.phone_number}}<br/>
 </div>
+</div>
+<div style="float: right; width: 242px;">
 <div class="container">
     <label for="id_education" >{{form.education.label}}:</label><br/>
     {% if form.education.errors %}<span class="form_error">{% for error in form.education.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.education}}<br/>
 </div>
-</div>
-<div style="float: right; width: 242px;">
 <div class="container">
     <label for="address_street" >{{form.address_street.label}}:</label><br/>
     {% if form.address_street.errors %}<span class="form_error">{% for error in form.address_street.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
