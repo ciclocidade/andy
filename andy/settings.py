@@ -120,6 +120,8 @@ DATE_INPUT_FORMATS = ("%d/%m/%Y",)
 
 ANUIDADE = (60.00, 120.00, 180.00)
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 try:
     from local_settings import *
 except ImportError:
