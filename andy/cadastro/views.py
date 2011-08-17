@@ -42,9 +42,6 @@ def activate(request, activation_key=None):
 @login_required
 def profile(request):
     msg = ''
-    nex = request.GET.get('next', None)
-    if nex:
-        request.session['next'] = nex
     try:
         member = request.user.get_profile()
     except ObjectDoesNotExist:
@@ -55,7 +52,7 @@ def profile(request):
             member = form.save()
             messages.add_message(request, messages.SUCCESS, 'Seu perfil foi atualizado com sucesso!')
             if member.is_complete() and request.user.is_active:
-                return HttpResponseRedirect(request.session.get('next', reverse('cadastro_survey')))
+                return HttpResponseRedirect(reverse('cadastro_survey'))
     else:
         form = MemberForm(instance=member)
     if not member.is_complete():
@@ -76,9 +73,6 @@ def _has_profile(user):
 @login_required
 @user_passes_test(_has_profile, login_url='/perfil/')
 def survey(request):
-    nex = request.GET.get('next', None)
-    if nex:
-        request.session['next'] = nex
     member = request.user.get_profile()
     form = None
     if not member.answered_survey():
@@ -93,7 +87,7 @@ def survey(request):
                 bus.member = member
                 bus.save()
                 messages.add_message(request, messages.SUCCESS, 'Pesquisa preenchida com sucesso, obrigado!')
-                return HttpResponseRedirect(request.session.get('next', reverse("cadastro_pay")))
+                return HttpResponseRedirect(reverse("cadastro_pay"))
             else:
                 messages.add_message(request, messages.ERROR, 'Você já preencheu essa pesquisa!')
     return render_to_response('survey.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))

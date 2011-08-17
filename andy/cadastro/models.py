@@ -76,35 +76,35 @@ class Member(models.Model):
 
 from multiselectmodelfield import MultiSelectField
 class BikeUsageSurvey(models.Model):
-    FREQUENCY_CHOICES = [ (i,i) for i in (u"5 a 7 vezes por semana",
+    FREQUENCY_CHOICES = [ (str(i),label) for i,label in enumerate((u"5 a 7 vezes por semana",
                          u"2 a 4 vezes por semana",
                          u"uma vez por semana",
                          u"eventualmente",
-                         u"não utilizo a bicicleta") ]
-    SOURCE_CHOICES = [ (i,i) for i in (u"sites, blogs ou mecanismos de busca na internet",
+                         u"não utilizo a bicicleta")) ]
+    SOURCE_CHOICES = [ (str(i),label) for i,label in enumerate((u"sites, blogs ou mecanismos de busca na internet",
                       u"facebook, twitter ou listas de e-mail",
                       u"indicação de amigos / conhecidos",
                       u"eventos / atividades",
                       u"panfleto",
                       u"participei do ato de fundação",
                       u"instituição ou grupo",
-                      u"outros") ]
-    USAGE_CHOICES = [ (i,i) for i in (
+                      u"outros")) ]
+    USAGE_CHOICES = [ (str(i),label) for i,label in enumerate((
                      u"ir ao trabalho às vezes",
                      u"ir ao trabalho todos os dias",
                      u"fazer outros deslocamentos no meu dia-a-dia",
                      u"como instrumento de trabalho (ex: entregas, vigilância, etc)",
                      u"lazer",
                      u"esporte (amador ou profissional)",
-                     u"não utilizo a bicicleta") ]
-    EXPECTATIONS_CHOICES = [ (i,i) for i in (
+                     u"não utilizo a bicicleta")) ]
+    EXPECTATIONS_CHOICES = [ (str(i),label) for i,label in enumerate((
                     u"conhecer direitos e leis a serem defendidos junto a órgãos públicos e outras instituições",
                     u"contribuir para a construção de políticas públicas relativas à mobilidade urbana",
                     u"espaços de discussão sobre o uso da bicicleta na cidade (dicas, problemas, experiências, trajetos e outros)",
                     u"atividades culturais e educativas que promovam o uso da bicicleta (encontros, passeios, seminários, oficinas)",
                     u"aprofundamento teórico, estudo e produção de conhecimento",
-                    u"conhecer dicas e técnicas sobre compra, uso e manutenção de bicicletas") ]
-    VOLUNTEERING_CHOICES = [ (i,i) for i in (
+                    u"conhecer dicas e técnicas sobre compra, uso e manutenção de bicicletas")) ]
+    VOLUNTEERING_CHOICES = [ (str(i),label) for i,label in enumerate((
                     u"sim, participando de projetos específicos e pontuais nas minhas áreas de interesse ou atuação",
                     u"sim, participando da Coordenadoria de Cultura da Bicicleta e Formação do Ciclista",
                     u"sim, participando da Coordenadoria de Participação Pública",
@@ -113,8 +113,8 @@ class BikeUsageSurvey(models.Model):
                     u"sim, participando da Coordenadoria de Tecnologia",
                     u"sim, participando da Coordenadoria de Relações com Associados e Voluntários",
                     u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
-                    u"não, não tenho disponibilidade") ]
-    CITY_REGION = [ (i.split("(")[0].strip(),i) for i in (
+                    u"não, não tenho disponibilidade")) ]
+    CITY_REGION = [ (str(i),label) for i,label in enumerate((
 		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
 		    u"BUTANTÃ (Butantã, Morumbi, Vila Sônia, Raposo Tavares, Rio Pequeno)",
 		    u"CAMPO LIMPO, Campo Limpo, Capão Redondo, Vila Andrade)",
@@ -146,7 +146,7 @@ class BikeUsageSurvey(models.Model):
 		    u"VILA MARIA (Vila Maria, Vila Guilherme, Vila Medeiros)",
 		    u"VILA MARIANA (Vila Mariana, Saúde, Moema)",
 		    u"VILA PRUDENTE (Vila Prudente, Sapopemba, São Lucas)",
-            u"Outros municípios da grande São Paulo") ]
+            u"Outros municípios da grande São Paulo")) ]
 
     member = models.OneToOneField(Member, verbose_name="Associado")
     created_at = models.DateTimeField(u"Data", auto_now_add=True)
