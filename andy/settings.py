@@ -122,6 +122,8 @@ ANUIDADE = (60.00, 120.00, 180.00)
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+SESSION_COOKIE_AGE = 3600
+
 try:
     from local_settings import *
 except ImportError:
