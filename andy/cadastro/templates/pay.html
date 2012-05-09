@@ -2,25 +2,24 @@
 
 {% block content %}
 
-<ul>
-<li>A Ciclocidade acredita no apoio e na participação de seus associados para cumprir sua missão de defender o ciclista e promover o uso de bicicletas em São Paulo.</li>
+<ul id="pay">
+<li>A Ciclocidade acredita no apoio e na participação de seus associados para cumprir sua missão de transformar São Paulo em um ambiente adequado e seguro ao ciclista.</li>
 <li>Nossa entidade não tem fins lucrativos, mas a sua contribuição nos ajuda a manter o custo mínimo de funcionamento.</li>
-<li>Seguindo resoluções <a target="_blank" href="http://www.ciclocidade.org.br/quem-somos/estatuto">estatutárias</a> e deliberações da Diretoria, a partir de agosto de 2011 a Ciclocidade passará a contar com a anuidade paga por seus associados.</li>
-<li>A cobrança da anuidade acontecerá sempre no mês de agosto de cada ano, em valor integral.</li>
-<li>A anuidade mínima é de R$ 60,00 e os valores mais altos constituem apenas uma maneira de você apoiar ainda mais a associação, não garantindo direitos ou benefícios diferenciados.</li>
-<li>Escolha abaixo o valor da sua anuidade e clique no ícone de pagamento para completar a sua associação.</li>
-<li>A anuidade pode ser paga através de boleto bancário, cartões de crédito, débito em conta ou outras formas disponíveis no serviço PagSeguro.</li>
-<li>Além da confirmação do pagamento, em até 48h você irá receber um email de boas vindas da Ciclocidade com mais informações sobre as formas de participação.</li>
+<li>Seguindo resoluções <a target="_blank" href="http://www.ciclocidade.org.br/quem-somos/estatuto">estatutárias</a> e deliberações da Diretoria, a partir de maio de 2012, a Ciclocidade passará a contar com uma contribuição associativa paga anualmente por seus associados e de maneira proporcional aos meses restantes até a data de renovação.</li>
+<li>A renovação acontece no mês de agosto, quando é cobrado o valor integral de R$ 60.</li>
+<li>Caso você esteja se associando nos demais meses do ano, o valor cobrado será proporcionalmente menor. Por exemplo: ao se associar no mês de maio, o pagamento será de R$ 15; no mês de junho, o valor será de R$10 e assim por diante. </li>
+<li>O pagamento pode ser feito através de boleto bancário, cartão de crédito, débito em conta ou outras formas disponíveis no serviço PagSeguro.</li>
+<li>Em até 48 horas você receberá um e-mail de boas-vindas da Ciclocidade, confirmando a o seu pedido de associação.</li>
+<li>Você também poderá doar doar outros valores além da sua contribuição associativa. Para isso, preencha o campo “doações adicionais” antes de completar o seu pedido.</li>
 </ul>
 
 {% if show_form %}
 <form action="." method="post" name="payment">
 	{% csrf_token %}
-	<p style="margin-left: 18px;">
-	<input id="60" type="radio" name="valor" value=60 /><label for="60">R$ 60,00</label>
-	<input id="120" type="radio" name="valor" value=120 /><label for="120"> R$ 120,00</label>
-	<input id="180" type="radio" name="valor" value=180 /><label for="180">R$ 180,00</label>
-	</p>
+	<div class="form" style="margin-left: 18px;">
+	<label for="donation">Doações adicionais (digite o valor em reais): </label><input id="donation" type="text" name="donation" value="0,00" style="width: 80px;" />
+
+	</div>
 	<input style="margin-left: 20px;" type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/205x30-pagar.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
 </form>
 {% endif %}

@@ -17,6 +17,8 @@ from pagamento.models import Payment
 from cadastro.models import Member, BikeUsageSurvey
 from cadastro.forms import MemberForm, BikeUsageForm
 
+from datetime import datetime
+
 
 def register(request):
     if request.method == 'POST':
@@ -102,10 +104,15 @@ def pay(request):
         p = Payment.objects.create(status="Aguardando", user=user)
         carrinho = CarrinhoPagSeguro(ref_transacao=p.pk)
         carrinho.set_cliente(email=user.email, cep=member.address_zip)
-        valor = request.POST.get('valor')
-        if not valor.isdigit() or int(valor) < min(settings.ANUIDADE):
-            valor = min(settings.ANUIDADE)
+        valor = calculate_membership_fee(datetime.today())
+        donations = request.POST['donation'].replace(",", ".")
+        try:
+            donations = float(donations)
+        except ValueError: 
+            donations = 0
         carrinho.add_item(ItemPagSeguro(cod=1, descr='Anuidade Ciclocidade', quant=1, valor=float(valor)))
+        if donations > 0:
+            carrinho.add_item(ItemPagSeguro(cod=1, descr='Doação Ciclocidade', quant=1, valor=float(donations)))
         payment_form = carrinho.form()
         return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
     paids = user.payment_set.filter(paid=True)
@@ -115,4 +122,8 @@ def pay(request):
     return render_to_response("pay.html", {'paids': paids, 'show_form': show_form},
             context_instance=RequestContext(request))
 
-
+def calculate_membership_fee(date):
+    month = date.month
+    if month < 8:
+        return (8 - month) * 5
+    return (12 - month + 8) * 5

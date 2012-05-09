@@ -173,3 +173,8 @@ div#coordenadorias .missao {
 #coordenadorias_lightbox {
 	font-size: 0.8em;
 }
+
+ul#pay li {
+	margin-bottom: 5px;
+}
+
