@@ -106,13 +106,13 @@ class BikeUsageSurvey(models.Model):
                     u"conhecer dicas e técnicas sobre compra, uso e manutenção de bicicletas")) ]
     VOLUNTEERING_CHOICES = [ (str(i),label) for i,label in enumerate((
                     u"sim, participando de projetos específicos e pontuais nas minhas áreas de interesse ou atuação",
-                    u"sim, participando da Coordenadoria de Cultura da Bicicleta e Formação do Ciclista",
-                    u"sim, participando da Coordenadoria de Participação Pública",
-                    u"sim, participando da Coordenadoria de Pesquisa",
-                    u"sim, participando da Coordenadoria de Comunicação",
-                    u"sim, participando da Coordenadoria de Tecnologia",
-                    u"sim, participando da Coordenadoria de Relações com Associados e Voluntários",
-                    u"sim, participando da Coordenadoria de Desenvolvimento Institucional",
+                    u"sim, participando da Área de Cultura da Bicicleta e Formação do Ciclista",
+                    u"sim, participando da Área de Participação Pública",
+                    u"sim, participando da Área de Pesquisa",
+                    u"sim, participando da Área de Comunicação",
+                    u"sim, participando da Área de Tecnologia",
+                    u"sim, participando da Área de Relações com Associados e Voluntários",
+                    u"sim, participando da Área de Desenvolvimento Institucional",
                     u"não, não tenho disponibilidade")) ]
     CITY_REGION = [ (str(i),label) for i,label in enumerate((
 		    u"ARICANDUVA (Aricanduva, Carrão, Vila Formosa)",
