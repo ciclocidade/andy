@@ -4,6 +4,8 @@ from django.forms.fields import ChoiceField
 from django.forms.widgets import RadioSelect
 from django.contrib.localflavor.br.forms import BRStateSelect, BRCPFField, BRZipCodeField, BRPhoneNumberField
 from django.contrib.localflavor.br.br_states import STATE_CHOICES
+from django.contrib.auth.models import User
+from django.contrib import auth
 
 SP_BRStateSelect = (('SP', u"São Paulo"),) + STATE_CHOICES
 
@@ -63,3 +65,16 @@ class BikeUsageForm(forms.ModelForm):
         model = BikeUsageSurvey
         exclude = ('member',
                    'created_at')
+
+class PasswordResetForm(auth.forms.PasswordResetForm):
+    def clean_email(self):
+        """
+        Validates that an active user exists with the given email address.
+        """
+        email = self.cleaned_data["email"]
+        self.users_cache = User.objects.filter(email__iexact=email,
+                                               is_active=True)
+        if not len(self.users_cache):
+            raise forms.ValidationError(self.error_messages['unknown'])
+        return email
+
