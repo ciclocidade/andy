@@ -18,7 +18,7 @@ class MemberForm(forms.ModelForm):
     
     # profile info
     name = forms.CharField(label=u"Nome completo")
-    phone_number = BRPhoneNumberField(label="Telefone")
+    phone_number = forms.CharField(label="Telefone")
     address_zip = BRZipCodeField(label="CEP")
     cpf = BRCPFField(label="CPF")
     sexo = ChoiceField(widget=RadioSelect, choices=(('M', "Masculino"), ("F", "Feminino")))
