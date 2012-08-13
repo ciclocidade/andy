@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+from django.conf import settings
 
 from registration.forms import RegistrationFormUniqueEmail
 from registration.models import RegistrationProfile
@@ -121,8 +122,13 @@ def pay(request):
             carrinho.add_item(ItemPagSeguro(cod=1, descr='Doação Ciclocidade', quant=1, valor=float(donations)))
         payment_form = carrinho.form()
         return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
-    paids = user.payment_set.filter(paid=True, created_at__gt=date(datetime.now().year, 8, 1))
-    show_form = not bool(paids.count())
+    paids = user.payment_set.filter(paid=True)
+
+    now = datetime.now()
+    year = now.year if now.month >= 8 else now.year - 1
+    last_year = paids.filter(created_at__gt=date(year, 8, 1))
+    
+    show_form = not bool(last_year.count())
     if not show_form:
         messages.add_message(request, messages.SUCCESS, 'Você esta em dia com o pagamento da anuidade!')
         year = None
