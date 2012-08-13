@@ -17,7 +17,7 @@ from pagamento.models import Payment
 from cadastro.models import Member, BikeUsageSurvey
 from cadastro.forms import MemberForm, BikeUsageForm
 
-from datetime import datetime
+from datetime import datetime, date
 
 
 def register(request):
@@ -46,6 +46,7 @@ def profile(request):
     msg = ''
     try:
         member = request.user.get_profile()
+        msg = u'Olá %s! Atualize os seus dados cadastrais :-)' % request.user.get_full_name()
     except ObjectDoesNotExist:
         member = Member(user=request.user)
     if request.method == 'POST':
@@ -54,15 +55,20 @@ def profile(request):
             member = form.save()
             messages.add_message(request, messages.SUCCESS, 'Seu perfil foi atualizado com sucesso!')
             if member.is_complete() and request.user.is_active:
-                return HttpResponseRedirect(reverse('cadastro_survey'))
+                try:
+                    BikeUsageSurvey.objects.get(member=member)
+                    return HttpResponseRedirect(reverse("cadastro_pay"))
+                except BikeUsageSurvery.DoesNotExist:
+                    return HttpResponseRedirect(reverse('cadastro_survey'))
     else:
         form = MemberForm(instance=member)
     if not member.is_complete():
-        messages.add_message(request, messages.WARNING, 'Complete os dados do seu perfil!')
+        msg = "Complete os dados do seu perfil!"
     if not form.fields['name'].initial:
         form.fields['name'].initial = request.user.get_full_name()
     if not form.fields['address_city'].initial:
         form.fields['address_city'].initial = u'São Paulo' 
+    messages.add_message(request, messages.WARNING, msg)
     return render_to_response('profile.html', {'user': request.user, 'form': form}, context_instance=RequestContext(request))
 
 def _has_profile(user):
@@ -115,11 +121,15 @@ def pay(request):
             carrinho.add_item(ItemPagSeguro(cod=1, descr='Doação Ciclocidade', quant=1, valor=float(donations)))
         payment_form = carrinho.form()
         return render_to_response("pay-forward.html", {'payment_form': payment_form}, context_instance=RequestContext(request))
-    paids = user.payment_set.filter(paid=True)
+    paids = user.payment_set.filter(paid=True, created_at__gt=date(datetime.now().year, 8, 1))
     show_form = not bool(paids.count())
     if not show_form:
         messages.add_message(request, messages.SUCCESS, 'Você esta em dia com o pagamento da anuidade!')
-    return render_to_response("pay.html", {'paids': paids, 'show_form': show_form},
+        year = None
+    else:
+        messages.add_message(request, messages.WARNING, 'Por favor, leia as instruções e efetue o pagamento da anuidade via PagSeguro')
+        year = datetime.now().year
+    return render_to_response("pay.html", {'paids': paids, 'show_form': show_form,  'year': year},
             context_instance=RequestContext(request))
 
 def calculate_membership_fee(date):
