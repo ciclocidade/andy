@@ -75,6 +75,6 @@ class PasswordResetForm(auth.forms.PasswordResetForm):
         self.users_cache = User.objects.filter(email__iexact=email,
                                                is_active=True)
         if not len(self.users_cache):
-            raise forms.ValidationError(_("That e-mail address doesn't have an associated user account. Are you sure you've registered?"))
+            raise forms.ValidationError("Usuário não encontrado, verifique o e-mail por favor.")
         return email
 
