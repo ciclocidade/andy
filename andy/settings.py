@@ -65,6 +65,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'email_auth.EmailBackend',
+)
+
 ROOT_URLCONF = 'andy.urls'
 
 TEMPLATE_DIRS = (

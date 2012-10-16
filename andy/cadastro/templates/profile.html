@@ -12,8 +12,8 @@
 {% if form.non_field_errors %}<span class="form_error">{% for error in form.non_field_errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
 <div style="float: left; width: 242px;">
 <div class="container">
-<label for="username">nome de usuário: </label><br/>
-<p style="margin-top: 4px; margin-botom: 4px;">{{user.username}}</p>
+<label for="username">nome completo: </label><br/>
+<p style="margin-top: 4px; margin-botom: 4px;">{{user.get_full_name}}</p>
 </div>
 <div class="container">
     <label for="email" >endereço de email:</label><br/>

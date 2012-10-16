@@ -39,17 +39,10 @@ $("a#anuidade_lightbox").fancybox({
 {% if form.non_field_errors %}<span class="form_error">{% for error in form.non_field_errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
 <div style="float: left; width: 242px;">
 <div class="container">
-    <label for="id_username" >{{form.username.label}}: </label><br/>
-    {% if form.username.errors %}<span class="form_error">{% for error in form.username.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
-    {{form.username}}<br/>
-</div>
-<div class="container">
     <label for="id_email" >{{form.email.label}}:</label><br/>
     {% if form.email.errors %}<span class="form_error">{% for error in form.email.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}
     {{form.email}}<br/>
 </div>
-</div>
-<div style="float: right">
 <div class="container">
     <label for="id_password1" >{{form.password1.label}}:</label><br/>
     {% if form.password1.errors %}<span class="form_error">{% for error in form.password1.errors %}{{ error|escape }}<br/>{% endfor %}</span>{% endif %}

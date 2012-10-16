@@ -59,6 +59,20 @@ div.form input[type="password"]
 
 }
 
+.login-input {
+    width: 110px;
+}
+
+.login-input input {
+    width: 195px !important;
+}
+
+#login-btn {
+    width: 66px;
+    margin-top: 5px;
+    margin-right: 1px;
+}
+
 div.form input[type="text"],
 div.form input[type="password"]
 {

@@ -16,16 +16,16 @@
 	{% csrf_token %}
 	<table>
 	<tr>
-	    <td>{{ form.username.label_tag }}</td>
-	    <td>{{ form.username }}</td>
+      <td><label for="id_username">Usuário/e-mail</label></td>
+	    <td class="login-input">{{ form.username }}</td>
 	</tr>
 	<tr>
 	    <td>{{ form.password.label_tag }}</td>
-	    <td>{{ form.password }}</td>
+	    <td class="login-input">{{ form.password }}</td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><a style="font-size: 11px;" href="{% url 'password_reset' %}">Esqueci minha senha</a><input type="submit" value="enviar" style="float: right;"/></td>
+		<td><a style="font-size: 11px;" href="{% url 'password_reset' %}">Esqueci minha senha</a><input id="login-btn" type="submit" value="enviar" style="float: right;"/></td>
 	</tr>
 	</table>
 

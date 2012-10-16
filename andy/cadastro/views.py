@@ -1,6 +1,7 @@
 # coding: utf-8
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -20,10 +21,23 @@ from cadastro.forms import MemberForm, BikeUsageForm
 
 from datetime import datetime, date
 
+import random
 
 def register(request):
     if request.method == 'POST':
-        form = RegistrationFormUniqueEmail(data=request.POST, files=request.FILES)
+        username = request.POST['email'].replace('.', '').replace('_', '').replace('-', '').split('@')[0]
+        while True:
+            try: 
+                User.objects.get(username=username)
+                username += str(random.randint(0,9))
+            except User.DoesNotExist:
+                break
+        d = {   'username': username,
+                'email': request.POST['email'],
+                'csrfmiddlewaretoken': request.POST['csrfmiddlewaretoken'],
+                'password1': request.POST['password1'],
+                'password2': request.POST['password2']}
+        form = RegistrationFormUniqueEmail(data=d)
         if form.is_valid():
             new_user = form.save()
             messages.add_message(request, messages.SUCCESS, 'Registro feito com sucesso, por favor verifique seu email para continuar com o processo de associação.')
